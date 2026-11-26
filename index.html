@@ -299,7 +299,7 @@ var PROD='สั่งผลิต (ชีตสรุปยอด)';
 var FOLLOW_DAYS=2, LOST_DAYS=7;
 var REASONS=['','ราคา','เสนอราคาแล้วลูกค้าเงียบ','ร้านถามรายละเอียดแล้วลูกค้าเงียบ','ร้านตอบช้าหรือไม่ได้ตอบ','ทักมาเช็คราคาเฉยๆ','เวลาไม่ทัน','ไปทำที่อื่น','อื่นๆ'];
 var SOURCES=['Facebook','Instagram','LINE OA แชตเดี่ยว','LINE OA กลุ่มลูกค้า','คอนเนคชัน','โทร / หน้าร้าน','อื่นๆ'];
-var ROLES={NEW:'เจ้าของ',TOR:'พาร์ทเนอร์',JUMP:'ฝ่ายผลิต'};
+var ROLES={NEW:'OWNER',TOR:'MANAGER',JUMP:'SUPPLIER'};
 var OWNERS=['TOR','NEW','JUMP'], DEFAULT_OWNER='TOR';
 function ownerSel(j,cls){
   if(DATA.scoped)return '<span class="pill">ดูแลโดย '+esc(j.owner)+'</span>';
