@@ -299,6 +299,7 @@ var PROD='สั่งผลิต (ชีตสรุปยอด)';
 var FOLLOW_DAYS=2, LOST_DAYS=7;
 var REASONS=['','ราคา','เสนอราคาแล้วลูกค้าเงียบ','ร้านถามรายละเอียดแล้วลูกค้าเงียบ','ร้านตอบช้าหรือไม่ได้ตอบ','ทักมาเช็คราคาเฉยๆ','เวลาไม่ทัน','ไปทำที่อื่น','อื่นๆ'];
 var SOURCES=['Facebook','Instagram','LINE OA แชตเดี่ยว','LINE OA กลุ่มลูกค้า','คอนเนคชัน','โทร / หน้าร้าน','อื่นๆ'];
+var ROLES={NEW:'เจ้าของ',TOR:'พาร์ทเนอร์',JUMP:'ฝ่ายผลิต'};
 var OWNERS=['TOR','NEW','JUMP'], DEFAULT_OWNER='TOR';
 function ownerSel(j,cls){
   if(DATA.scoped)return '<span class="pill">ดูแลโดย '+esc(j.owner)+'</span>';
@@ -361,7 +362,7 @@ function load(first){
   fetch(url()).then(function(r){return r.json();}).then(function(d){
     if(!d||d.error){KEY='';try{localStorage.removeItem('ntr_key');}catch(x){}gate('รหัสไม่ถูกต้อง ขอรหัสใหม่จากเจ้าของร้าน');return;}
     d.jobs.forEach(function(j){j.quote=fixQuote(j.quote);if(!j.owner)j.owner=DEFAULT_OWNER;});
-    if(d.user){ME=d.user;all('.mewrap').forEach(function(e){e.hidden=true;});all('.whoami').forEach(function(e){e.hidden=false;e.innerHTML='เข้าใช้ในชื่อ <b>'+esc(d.user)+'</b>'+(d.admin?' · เห็นกำไร':'');});}
+    if(d.user){ME=d.user;all('.mewrap').forEach(function(e){e.hidden=true;});all('.whoami').forEach(function(e){e.hidden=false;e.innerHTML='เข้าใช้ในชื่อ <b>'+esc(d.user)+'</b>'+(ROLES[d.user]?' · '+ROLES[d.user]:'');});}
     DATA=d;$('gate').hidden=true;$('app').hidden=false;show('');
     var t='อัปเดต '+new Date(d.now).toLocaleTimeString('th-TH',{hour:'2-digit',minute:'2-digit'});
     all('.upd').forEach(function(e){e.textContent=t;});
