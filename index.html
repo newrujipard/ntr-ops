@@ -565,7 +565,7 @@ function drawer(){
    +(DATA.admin?dd('กำไร',baht(j.profit)):'')
    +dd('ใช้เวลาแล้ว',j.closedAt&&realDates(j)?'รวม '+dTxt(days(j.opened,j.closedAt)):j.wonAt?'ผลิตมาแล้ว '+dTxt(days(j.wonAt,j.closedAt||null)):'')
    +dd('คุยล่าสุด',touch(j)?agoTxt(touch(j))+(j.lastReply?' ('+j.lastReply+'ตอบล่าสุด)':''):'')+dd('ตามล่าสุด',j.followed?agoTxt(ms(j.followed)):'')+'</dl>'
-   +'<div class="edit"><label>ขั้นต่อไป<input class="fld" data-f="nextAction" data-id="'+id+'" value="'+esc(j.nextAction)+'" placeholder="ต้องทำอะไรต่อ"></label>'
+   +'<div class="edit">'+(DATA.scoped?'':'<div class="two"><label>ชื่อลูกค้า<input class="fld" data-f="customer" data-id="'+id+'" value="'+esc(j.customer)+'"></label><label>ชื่องาน<input class="fld" data-f="title" data-id="'+id+'" value="'+esc(j.title)+'"></label></div>')+'<label>ขั้นต่อไป<input class="fld" data-f="nextAction" data-id="'+id+'" value="'+esc(j.nextAction)+'" placeholder="ต้องทำอะไรต่อ"></label>'
    +'<label>ผู้ดูแล'+ownerSel(j)+'</label>'
    +'<div class="two"><label>วันที่รับงาน<input class="fld" type="date" data-f="opened" data-id="'+id+'" value="'+dInput(j.opened)+'"></label><label>วันที่ได้งาน<input class="fld" type="date" data-f="wonAt" data-id="'+id+'" value="'+dInput(j.wonAt)+'"></label><label>วันที่จบงาน<input class="fld" type="date" data-f="closedAt" data-id="'+id+'" value="'+dInput(j.closedAt)+'"></label></div>'
    +'<label>ขั้นตอน<select class="fld" data-f="status" data-id="'+id+'">'+st+'</select></label>'
