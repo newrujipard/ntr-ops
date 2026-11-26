@@ -486,7 +486,7 @@ function cycle(J){
   var q=[],p=[],t=[];
   J.filter(realDates).forEach(function(j){
     if(j.wonAt&&j.source!==PROD){var a=days(j.opened,j.wonAt);if(a!==null)q.push(a);}
-    if(j.status==='เสร็จ'&&j.wonAt&&j.closedAt){var b=days(j.wonAt,j.closedAt);if(b!==null)p.push(b);}
+    if(j.status==='เสร็จ'&&j.wonAt&&j.closedAt&&ms(j.wonAt)!==ms(j.closedAt)){var b=days(j.wonAt,j.closedAt);if(b!==null)p.push(b);}
     if(j.status==='เสร็จ'&&j.closedAt){var c=days(j.opened,j.closedAt);if(c!==null)t.push(c);}
   });
   return {quote:avg(q),nq:q.length,prod:avg(p),np:p.length,total:avg(t),nt:t.length};
