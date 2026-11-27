@@ -72,6 +72,8 @@ input[type=range]{width:100%;accent-color:var(--red)}
 a.btn{display:inline-block;text-decoration:none;text-align:center;box-sizing:border-box}
 .lineBtn{background:#06C755!important;border-color:#06C755!important;color:#fff!important;font-size:16px;padding:12px 16px;width:100%}
 #modal h3{margin:4px 0 10px;font-weight:600}
+body.embed header{display:none}
+body.embed main{height:100%}
 @media (max-width:900px){
   main{grid-template-columns:1fr;grid-template-rows:auto auto;height:auto}
   #left{position:sticky;top:0;z-index:2}
@@ -303,6 +305,7 @@ a.btn{display:inline-block;text-decoration:none;text-align:center;box-sizing:bor
 </div></div>
 
 <script>
+try{if(window.self!==window.top)document.body.classList.add('embed')}catch(e){document.body.classList.add('embed')}
 (()=>{
 const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
 
