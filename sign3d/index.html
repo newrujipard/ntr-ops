@@ -523,9 +523,9 @@ function render(){
   // 2) halo on wall
   if(back&&!hasPlate){
     ctx.save();if(night)ctx.globalCompositeOperation='lighter';
-    glowShapes(ctx,lb.x,lb.y,ledHex,BASE*(night?.32:.2),night?br:.18*br,night?3:1);ctx.restore();
+    glowShapes(ctx,lb.x,lb.y,ledHex,BASE*(night?.32:.12),night?br:.85*br,night?3:3);ctx.restore();
   }
-  if(box&&night){ctx.save();ctx.globalCompositeOperation='lighter';glowPlate(ctx,lb.x,lb.y,ledHex,BASE*.45,.55*br);ctx.restore()}
+  if(box){ctx.save();if(night)ctx.globalCompositeOperation='lighter';glowPlate(ctx,lb.x,lb.y,ledHex,BASE*(night?.45:.16),night?.55*br:.75*br);if(!night)glowPlate(ctx,lb.x,lb.y,ledHex,BASE*.4,.35*br);ctx.restore()}
   // 3) plate body
   if(hasPlate){
     const P2=newLayer(),px=P2.getContext('2d');
@@ -546,10 +546,11 @@ function render(){
     }
     if(night&&!box)darken(P2,.84);
     if(night&&box){px.save();px.globalCompositeOperation='source-atop';px.fillStyle=`rgba(6,8,18,${(1-br)*.5})`;platePath(px,lb.x,lb.y);px.fill();px.restore()}
+    if(!night&&box){px.save();px.globalCompositeOperation='screen';px.globalAlpha=.5*br;platePath(px,lb.x,lb.y);px.fillStyle=ledHex;px.fill();px.restore()}
     ctx.drawImage(P2,0,0);
     if(!flat){
       ctx.save();platePath(ctx,lb.x,lb.y);ctx.clip();
-      if(back){if(night)ctx.globalCompositeOperation='lighter';glowShapes(ctx,lb.x,lb.y,ledHex,BASE*(night?.28:.18),night?br:.18*br,night?3:1)}
+      if(back){if(night)ctx.globalCompositeOperation='lighter';glowShapes(ctx,lb.x,lb.y,ledHex,BASE*(night?.28:.12),night?br:.85*br,night?3:3)}
       else if(!night&&D>0)glowShapes(ctx,lb.x+BASE*.03,lb.y+BASE*.05,'rgba(0,0,0,1)',BASE*.05,.35,1);
       ctx.restore();
     }
@@ -573,6 +574,11 @@ function render(){
     ctx.drawImage(B,0,0);
   }
   // 5) front lit
+  if(front&&!night){
+    const lit=S.face.mat?mix(S.face.hex,'#ffffff',.35):mix(S.face.hex,'#ffffff',.3);
+    glowShapes(ctx,0,0,S.face.mat?ledHex:S.face.hex,BASE*.09,.7*br,2);
+    ctx.save();ctx.globalAlpha=.75*br;drawShapes(ctx,0,0,lit,S.logoImg);ctx.restore();
+  }
   if(front&&night){
     ctx.save();ctx.globalCompositeOperation='lighter';
     glowShapes(ctx,0,0,ledHex,BASE*.22,.55*br,2);ctx.restore();
