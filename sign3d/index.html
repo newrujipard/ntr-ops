@@ -1,0 +1,1066 @@
+<!DOCTYPE html>
+<html lang="th">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>NEW TR SIGN · ออกแบบป้าย 3D</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Kanit:wght@300;500;700;900&family=Prompt:wght@400;600;800&family=Mitr:wght@400;600&family=Chakra+Petch:wght@500;700&family=Bai+Jamjuree:wght@500;700&family=Sarabun:wght@400;700;800&family=Noto+Serif+Thai:wght@500;800&family=Pridi:wght@400;700&family=Charm:wght@400;700&family=Itim&family=Athiti:wght@500;700&family=K2D:wght@400;800&family=Mali:wght@500;700&family=Fahkwang:wght@500;700&family=Bebas+Neue&family=Montserrat:wght@600;900&family=Playfair+Display:wght@700;900&family=Oswald:wght@500;700&family=Pacifico&display=swap" rel="stylesheet">
+<style>
+:root{--red:#D71920;--red2:#a80f15;--ink:#1b1d21;--mut:#6b7078;--line:#e4e6ea;--bg:#f4f5f7}
+*{box-sizing:border-box}
+html,body{margin:0;height:100%;font-family:"Kanit",system-ui,sans-serif;color:var(--ink);background:var(--bg)}
+header{height:54px;background:var(--red);color:#fff;display:flex;align-items:center;gap:12px;padding:0 16px;box-shadow:0 2px 8px rgba(0,0,0,.15);position:relative;z-index:3}
+header .logo{white-space:nowrap;font-weight:900;letter-spacing:.5px;font-size:20px;background:#fff;color:var(--red);padding:2px 10px;border-radius:6px}
+header .sub{font-weight:300;font-size:15px;opacity:.95;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+main{display:grid;grid-template-columns:1fr 370px;height:calc(100% - 54px)}
+#left{display:flex;flex-direction:column;min-width:0;min-height:0;background:#2a2d33}
+#stageWrap{flex:1;min-height:0;display:flex;align-items:center;justify-content:center;padding:10px;overflow:hidden}
+#stage{position:relative;overflow:hidden;touch-action:none;user-select:none;-webkit-user-select:none;box-shadow:0 6px 30px rgba(0,0,0,.45);background:#111}
+#view{position:absolute;inset:0;transform-origin:0 0}
+#bar .zg{display:inline-flex;gap:2px;background:#3a3e46;border-radius:999px;padding:0 2px}
+#bar .zg button{background:transparent;padding:8px 10px;min-width:36px}
+#bar .zg #bZr{font-size:12.5px;min-width:52px}
+#bg{position:absolute;inset:0;width:100%;height:100%;display:block;pointer-events:none}
+#nightOv{position:absolute;inset:0;background:rgba(5,8,22,.72);pointer-events:none;display:none}
+#sign{position:absolute;left:0;top:0;transform-origin:0 0;pointer-events:none}
+#ov{position:absolute;inset:0;width:100%;height:100%;pointer-events:none;overflow:visible}
+#bar{display:flex;gap:8px;flex-wrap:wrap;align-items:center;justify-content:center;padding:8px 10px;background:#1f2227}
+#bar button{font:inherit;font-size:14px;border:0;border-radius:999px;padding:8px 14px;cursor:pointer;background:#3a3e46;color:#fff}
+#bar button.on{background:#fff;color:var(--ink)}
+#bar button.pri{background:var(--red)}
+#hint{color:#c9ccd2;font-size:13px;text-align:center;padding:0 10px 8px;background:#1f2227;font-weight:300}
+aside{overflow-y:auto;background:#fff;border-left:1px solid var(--line);padding:6px 14px 40px}
+details{border-bottom:1px solid var(--line);padding:6px 0}
+summary{cursor:pointer;font-weight:600;font-size:16px;padding:8px 0;list-style:none;display:flex;align-items:center;gap:8px}
+summary::-webkit-details-marker{display:none}
+summary .n{background:var(--red);color:#fff;border-radius:50%;width:22px;height:22px;display:inline-flex;align-items:center;justify-content:center;font-size:13px}
+label.f{display:block;font-size:13.5px;color:var(--mut);margin:10px 0 4px}
+label.f b{color:var(--ink);font-weight:500;float:right}
+textarea,select,input[type=text],input[type=number]{width:100%;font:inherit;font-size:15px;padding:8px 10px;border:1px solid #d3d6db;border-radius:8px;background:#fff;color:var(--ink)}
+textarea{resize:vertical;min-height:62px}
+input[type=range]{width:100%;accent-color:var(--red)}
+.row{display:flex;gap:8px;align-items:center}
+.row>*{flex:1}
+.btn{font:inherit;font-size:14px;border:1px solid #d3d6db;background:#fff;border-radius:8px;padding:8px 12px;cursor:pointer;color:var(--ink)}
+.btn.pri{background:var(--red);border-color:var(--red);color:#fff}
+.btn:active{transform:translateY(1px)}
+.seg{display:flex;flex-wrap:wrap;gap:6px}
+.seg button{font:inherit;font-size:13.5px;border:1px solid #d3d6db;background:#fff;border-radius:999px;padding:6px 12px;cursor:pointer;color:var(--ink)}
+.seg button.on{background:var(--ink);color:#fff;border-color:var(--ink)}
+.sw{display:grid;grid-template-columns:repeat(8,1fr);gap:6px;margin-top:8px}
+.sw button{aspect-ratio:1;border-radius:8px;border:1px solid rgba(0,0,0,.18);cursor:pointer;padding:0;position:relative}
+.sw button.on{outline:3px solid var(--red);outline-offset:1px}
+.sw button .c{position:absolute;bottom:1px;left:0;right:0;font-size:8px;color:#fff;text-shadow:0 0 2px #000;line-height:1}
+.cur{display:flex;gap:10px;align-items:center;margin-top:8px;font-size:14px}
+.cur i{width:30px;height:30px;border-radius:8px;border:1px solid rgba(0,0,0,.2);display:inline-block;flex:none}
+.note{font-size:12px;color:var(--mut);margin-top:6px;font-weight:300;line-height:1.45}
+.small{font-size:12.5px;color:var(--mut)}
+#calStatus{font-size:13px;color:var(--red2);margin-top:6px;min-height:18px}
+#calBox{display:none;margin-top:6px}
+#modal{position:fixed;inset:0;background:rgba(0,0,0,.75);display:none;align-items:center;justify-content:center;z-index:10;padding:16px}
+#modal .card{background:#fff;border-radius:14px;max-width:min(1100px,96vw);max-height:94vh;overflow:auto;padding:14px}
+#modal img{max-width:100%;max-height:70vh;display:block;margin:0 auto;border-radius:8px}
+#modal textarea{min-height:220px;font-size:14px}
+.finale{display:flex;gap:10px;align-items:flex-start;background:#f2fbf5;border:1px solid #bfe8cd;border-radius:10px;padding:10px 12px;font-size:14px;line-height:1.5}
+.finale .fz{font-size:24px;line-height:1}
+.lstep{display:flex;gap:10px;align-items:flex-start;margin:14px 0 6px;font-size:14.5px;line-height:1.45}
+.lstep .ln{flex:none;width:24px;height:24px;border-radius:50%;background:#06C755;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-weight:600;font-size:13px}
+.steps{margin:6px 0 12px;padding-left:20px;line-height:1.6;font-size:14.5px}
+.warn{background:#fff4e5;border:1px solid #f5c37a;border-radius:8px;padding:10px 12px;font-size:14px;margin-bottom:10px}
+a.btn{display:inline-block;text-decoration:none;text-align:center;box-sizing:border-box}
+.lineBtn{background:#06C755!important;border-color:#06C755!important;color:#fff!important;font-size:16px;padding:12px 16px;width:100%}
+#modal h3{margin:4px 0 10px;font-weight:600}
+@media (max-width:900px){
+  main{grid-template-columns:1fr;grid-template-rows:auto auto;height:auto}
+  #left{position:sticky;top:0;z-index:2}
+  #stageWrap{height:46vh;flex:none}
+  aside{border-left:0}
+  header .sub{font-size:12px}
+  header .logo{font-size:16px}
+}
+</style>
+</head>
+<body>
+<header><span class="logo">NEW TR SIGN</span><span class="sub">ออกแบบป้ายตัวอักษร 3D · ลองวางบนหน้างานจริง</span></header>
+<style>
+.types{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.types button{font:inherit;text-align:left;border:1.5px solid #d3d6db;background:#fff;border-radius:10px;padding:8px;cursor:pointer;display:flex;gap:8px;align-items:center;color:var(--ink)}
+.types button.on{border-color:var(--red);background:#fff4f4;box-shadow:0 0 0 2px rgba(215,25,32,.18)}
+.types .ic{flex:none;width:40px;height:40px;border-radius:8px;display:flex;align-items:center;justify-content:center;font-weight:900;font-size:22px;font-family:"Kanit"}
+.types .tx{min-width:0;line-height:1.2}
+.types .tx b{font-weight:600;font-size:13.5px;display:block}
+.types .tx span{font-size:11px;color:var(--mut);font-weight:300}
+#bar button:disabled{opacity:.35;cursor:default}
+.sw.t12{grid-template-columns:repeat(12,1fr);gap:3px}.sw.t12 button{border-radius:4px}
+.tl{display:block;font-size:13px;color:var(--red2);margin-top:4px;text-decoration:underline}
+#cCode,#cHex{flex:1 1 90px}#cName{flex:1 1 100%}
+.chk{display:flex;gap:8px;align-items:center;margin-top:10px;font-size:14px}
+</style>
+<main>
+  <section id="left">
+    <div id="stageWrap">
+      <div id="stage"><div id="view">
+        <img id="bg" alt="">
+        <div id="nightOv"></div>
+        <canvas id="sign"></canvas>
+        <svg id="ov"></svg>
+      </div></div>
+    </div>
+    <div id="bar">
+      <button id="bUndo" title="ย้อนกลับ (Ctrl+Z)">↶ ย้อนกลับ</button>
+      <button id="bRedo" title="ทำซ้ำ">↷</button>
+      <button id="bDay" class="on">☀️ กลางวัน</button>
+      <button id="bNight">🌙 กลางคืน</button>
+      <span class="zg"><button id="bZo" title="ซูมออก">－</button><button id="bZr" title="พอดีจอ">100%</button><button id="bZi" title="ซูมเข้า">＋</button></span>
+      <button id="bReal">✨ ภาพเสมือนจริง</button>
+      <button id="bShot" class="pri">📷 บันทึกภาพ</button>
+      <button id="bSpec">📋 สรุปสเปก</button>
+    </div>
+    <div id="hint"></div>
+  </section>
+
+  <aside>
+    <details open>
+      <summary><span class="n">1</span>ประเภทป้าย</summary>
+      <div class="types" id="types"></div>
+    </details>
+
+    <details open>
+      <summary><span class="n">2</span>รูปหน้างาน</summary>
+      <div class="row">
+        <button class="btn pri" id="upPhoto">📁 อัปโหลดรูปหน้างาน</button>
+        <button class="btn" id="useWall">ใช้ผนังตัวอย่าง</button>
+      </div>
+      <input type="file" id="fPhoto" accept="image/*" hidden>
+      <div class="note">ถ่ายรูปหน้าร้านให้เห็นตำแหน่งติดป้าย ถ่ายตรงๆ จะวางได้แม่นที่สุด</div>
+    </details>
+
+    <details open>
+      <summary><span class="n">3</span>ข้อความ & ฟอนต์</summary>
+      <div data-for="flat">
+        <div class="row">
+          <button class="btn pri" id="upArt">🖼️ ใช้ไฟล์แบบที่มีอยู่</button>
+          <button class="btn" id="rmArt">ลบไฟล์แบบ</button>
+        </div>
+        <input type="file" id="fArt" accept="image/*" hidden>
+        <div class="note">มีอาร์ตเวิร์กแล้ว (JPG/PNG) อัปโหลดมาวางได้เลย ไม่ต้องพิมพ์ข้อความ</div>
+      </div>
+      <div id="textBox">
+      <label class="f">ข้อความบนป้าย (ขึ้นบรรทัดใหม่ได้)</label>
+      <textarea id="txt">NEW TR SIGN</textarea>
+      <div class="row">
+        <div><label class="f">ฟอนต์</label><select id="font"></select></div>
+        <div style="flex:.6"><label class="f">ความหนาเส้น</label><select id="weight"></select></div>
+      </div>
+      <label class="f">ขนาดบรรทัดรอง <b id="v_line2"></b></label>
+      <input type="range" min="25" max="120" data-k="line2" data-u="%">
+      <label class="f">ระยะห่างตัวอักษร <b id="v_spacing"></b></label>
+      <input type="range" min="-5" max="40" data-k="spacing" data-u="">
+      <label class="f">ระยะห่างบรรทัด <b id="v_lineGap"></b></label>
+      <input type="range" min="0" max="60" data-k="lineGap" data-u="">
+      </div>
+    </details>
+
+    <details open>
+      <summary><span class="n">4</span>สี TOA</summary>
+      <div class="seg" id="tgt">
+        <button data-t="face">หน้าตัวอักษร</button>
+        <button data-t="side">ขอบข้าง</button>
+        <button data-t="plate">แผ่นรอง</button>
+      </div>
+      <div class="cur" id="curC"><i></i><span></span></div>
+      <a id="curLink" class="tl" target="_blank" rel="noopener" href="#">ดูสีจริงนี้ในเว็บ TOA ↗</a>
+      <div class="small" style="margin-top:10px">วัสดุ / สีพื้นฐาน</div>
+      <div class="sw" id="swMat"></div>
+      <div class="small" style="margin-top:10px">สีมาตรฐาน TOA (144 เฉด · แถวละโทน อ่อน → เข้ม)</div>
+      <div class="sw t12" id="swStd"></div>
+      <div class="small" style="margin-top:12px">ไม่เจอสีที่ชอบ? <a class="tl" style="display:inline" target="_blank" rel="noopener" href="https://www.toagroup.com/en/color-search">เปิดดูทั้ง 1,986 เฉดในเว็บ TOA ↗</a> แล้วนำรหัสกับ HEX มาใส่ด้านล่าง</div>
+      <div class="small" style="margin-top:10px">สีที่บันทึกไว้</div>
+      <div class="sw" id="swMine"></div>
+      <div class="row" style="margin-top:8px;flex-wrap:wrap">
+        <input type="color" id="cPick" value="#D71920" style="flex:none;width:44px;height:38px;border:0;padding:0;background:none">
+        <input type="text" id="cCode" placeholder="รหัส เช่น N6008">
+        <input type="text" id="cHex" placeholder="HEX เช่น #B4A88E">
+        <input type="text" id="cName" placeholder="ชื่อสี (อังกฤษ)">
+      </div>
+      <div class="row" style="margin-top:6px">
+        <button class="btn" id="cUse">ใช้สีนี้</button>
+        <button class="btn pri" id="cAdd">+ บันทึกไว้ใช้ต่อ</button>
+      </div>
+      <div class="note">สีบนจอเป็นสีโดยประมาณ ก่อนผลิตจริงเทียบกับแคตตาล็อกสี TOA ทุกครั้ง · กดค้าง/คลิกขวาที่สีที่บันทึกไว้เพื่อลบ</div>
+    </details>
+
+    <details open data-for="light">
+      <summary><span class="n">5</span>ไฟ LED</summary>
+      <div class="seg" data-g="light" data-for="letters">
+        <button data-v="none">ไม่มีไฟ</button>
+        <button data-v="front">ไฟออกหน้า</button>
+        <button data-v="back">ไฟออกหลัง</button>
+        <button data-v="both">หน้า + หลัง</button>
+      </div>
+      <label class="f">สีแสง</label>
+      <div class="seg" data-g="led">
+        <button data-v="white">ขาว (Daylight)</button>
+        <button data-v="warm">วอร์มไวท์</button>
+        <button data-v="same" data-for="letters">ตามสีหน้า</button>
+      </div>
+      <label class="f">ความสว่าง <b id="v_bright"></b></label>
+      <input type="range" min="20" max="100" data-k="bright" data-u="%">
+      <div class="note">กดปุ่ม 🌙 กลางคืน ใต้ภาพเพื่อดูตอนไฟติด</div>
+    </details>
+
+    <details open>
+      <summary><span class="n">6</span>ความหนา & มุมมอง 3D</summary>
+      <div data-for="letters">
+        <label class="f">ความหนาตัวอักษร <b id="v_depthCm"></b></label>
+        <input type="range" min="0" max="25" data-k="depthCm" data-u=" ซม.">
+        <label class="f">แผ่นรองหลังตัวอักษร</label>
+        <div class="seg" data-g="plate">
+          <button data-v="0">ไม่มี</button>
+          <button data-v="1">มีแผ่นรอง (ACP/อะคริลิก)</button>
+        </div>
+      </div>
+      <div data-for="plateopts">
+        <label class="f">ขอบรอบข้อความ <b id="v_platePad"></b></label>
+        <input type="range" min="5" max="150" data-k="platePad" data-u="">
+        <label class="f">ความหนาแผ่นป้าย <b id="v_plateCm"></b></label>
+        <input type="range" min="0" max="20" step="0.5" data-k="plateCm" data-u=" ซม.">
+        <label class="f">มุมโค้ง <b id="v_plateR"></b></label>
+        <input type="range" min="0" max="60" data-k="plateR" data-u="">
+      </div>
+      <label class="f">มุมมองความหนา ซ้าย–ขวา <b id="v_yaw"></b></label>
+      <input type="range" min="-45" max="45" data-k="yaw" data-u="°">
+      <label class="f">มุมมองความหนา บน–ล่าง <b id="v_pitch"></b></label>
+      <input type="range" min="-40" max="40" data-k="pitch" data-u="°">
+    </details>
+
+    <details data-for="letters">
+      <summary><span class="n">7</span>โลโก้</summary>
+      <div class="row">
+        <button class="btn pri" id="upLogo">📁 อัปโหลดโลโก้</button>
+        <button class="btn" id="rmLogo">ลบโลโก้</button>
+      </div>
+      <input type="file" id="fLogo" accept="image/*" hidden>
+      <label class="chk"><input type="checkbox" id="cutWhite"> ตัดพื้นขาวออก (ถ้าโลโก้ไม่ใช่ PNG พื้นใส)</label>
+      <label class="f">ตำแหน่ง</label>
+      <div class="seg" data-g="logoPos">
+        <button data-v="left">ซ้ายข้อความ</button>
+        <button data-v="top">เหนือข้อความ</button>
+      </div>
+      <label class="f">ขนาดโลโก้ <b id="v_logoSize"></b></label>
+      <input type="range" min="40" max="250" data-k="logoSize" data-u="%">
+    </details>
+
+    <details open>
+      <summary><span class="n">8</span>ขนาดจริง & การวางบนรูป</summary>
+      <div class="row">
+        <div><label class="f">กว้าง (เมตร)</label><input type="number" id="wM" min="0.1" max="50" step="0.05"></div>
+        <div data-for="fixed"><label class="f">สูง (เมตร)</label><input type="number" id="hM" min="0.1" max="50" step="0.05"></div>
+      </div>
+      <div class="small" id="dimTxt" style="margin-top:6px"></div>
+      <button class="btn" id="bCal" style="width:100%;margin-top:10px">📏 ตั้งสเกลจากรูป (วัดของจริง 1 ระยะ)</button>
+      <div id="calStatus"></div>
+      <div id="calBox" class="row">
+        <input type="number" id="calM" step="0.01" placeholder="ระยะจริง (เมตร) เช่น 0.90">
+        <button class="btn pri" id="calOk" style="flex:.5">ยืนยัน</button>
+      </div>
+      <div class="note">ตั้งสเกลแล้ว ป้ายจะขยายตามขนาดจริงเทียบกับหน้างาน เช่น วัดความกว้างประตู 0.90 ม.</div>
+      <div id="stdBox">
+        <label class="f">เอียงตามผนัง ซ้าย–ขวา <b id="v_ty"></b></label>
+        <input type="range" min="-65" max="65" data-p="ty" data-u="°">
+        <label class="f">เอียงตามผนัง บน–ล่าง <b id="v_tx"></b></label>
+        <input type="range" min="-50" max="50" data-p="tx" data-u="°">
+        <label class="f">หมุน <b id="v_rot"></b></label>
+        <input type="range" min="-45" max="45" step="0.5" data-p="rot" data-u="°">
+      </div>
+      <div class="row" style="margin-top:10px">
+        <button class="btn" id="bStraight">จัดให้ตรง</button>
+        <button class="btn" id="bFree">ปรับ 4 มุมอิสระ</button>
+      </div>
+      <div class="note">ปกติป้ายจะคงรูปสี่เหลี่ยมไม่เบี้ยว ใช้แถบ “เอียงตามผนัง” เมื่อรูปถ่ายเฉียง ส่วน “ปรับ 4 มุมอิสระ” ใช้เฉพาะผนังที่มุมแปลกจริงๆ</div>
+    </details>
+    <details open>
+      <summary><span class="n">9</span>รับภาพเสมือนจริง (ฟรี)</summary>
+      <div class="finale">
+        <div class="fz">✨</div>
+        <div><b>ออกแบบเสร็จแล้ว?</b><br>ทีมงานเรนเดอร์ภาพป้ายเสมือนจริงบนรูปหน้าร้านของคุณ ทั้ง<b>กลางวันและกลางคืน</b> ส่งให้ทาง LINE พร้อมช่วยประเมินราคา</div>
+      </div>
+      <button class="btn lineBtn" id="bReal2" style="margin-top:10px">💬 ขอภาพเสมือนจริงทาง LINE</button>
+      <div class="note">ใช้รูปหน้างานจริงและวางป้ายให้ตรงตำแหน่งก่อน ภาพจะทำบนรูปนั้น</div>
+    </details>
+  </aside>
+</main>
+
+<div id="modal"><div class="card">
+  <h3 id="mTitle"></h3>
+  <div id="mBody"></div>
+  <div class="row" style="margin-top:10px">
+    <button class="btn pri" id="mCopy" style="display:none">คัดลอกข้อความ</button>
+    <button class="btn" id="mClose">ปิด</button>
+  </div>
+</div></div>
+
+<script>
+(()=>{
+const $=s=>document.querySelector(s), $$=s=>[...document.querySelectorAll(s)];
+
+/* ---------- data ---------- */
+const FONTS=[
+ ['Kanit',[300,500,700,900],700],['Prompt',[400,600,800],600],['Mitr',[400,600],600],['Chakra Petch',[500,700],700],
+ ['Bai Jamjuree',[500,700],700],['Sarabun',[400,700,800],700],['Noto Serif Thai',[500,800],800],['Pridi',[400,700],700],
+ ['Charm',[400,700],700],['Itim',[400],400],['Athiti',[500,700],700],['K2D',[400,800],800],['Mali',[500,700],700],
+ ['Fahkwang',[500,700],700],['Montserrat',[600,900],900],['Oswald',[500,700],700],['Playfair Display',[700,900],700],
+ ['Bebas Neue',[400],400],['Pacifico',[400],400]
+];
+const MATS=[
+ {name:'สแตนเลสเงิน ด้าน (Hairline)',hex:'#C9CED3',mat:'silver'},
+ {name:'สแตนเลสเงิน เงา (Mirror)',hex:'#E3E6E9',mat:'mirror'},
+ {name:'สแตนเลสทอง',hex:'#D4A845',mat:'gold'},
+ {name:'สแตนเลสโรสโกลด์',hex:'#D9998A',mat:'rose'},
+ {name:'สแตนเลสดำ',hex:'#3A3C40',mat:'black'},
+ {name:'อะคริลิกขาวขุ่น',hex:'#F7F7F2'},
+ {name:'ไม้สักธรรมชาติ',hex:'#A86B3C',mat:'wood'}
+];
+const TOA_URL='https://www.toagroup.com/en/color-search';
+const TOA=[["แดง-ชมพู", "R2113|Optimist|F9D8DA;R2102|Pink Blush|F9CCCC;R2041|Sitting Pretty|FCBAB1;R2047|Vivid Peony|FBA79F;R2004|Joyful Moment|F9BCA0;R2003|Atomic Orange|F6967B;R2039|Lively Lady|EE7A74;R2002|Electric Orange|E66A58;R2037|Scarlet Flame|E14A4A;R2043|Ladybug|CB3F40;R2097|Red Tango|A6353B;R2157|Fully Red|A2354C"], ["ส้ม", "O1156|Bleach Peach|FCCDC1;O1119|Himalayan Pink|FEBBA3;O1005|Creamy Carrot|FECC91;O1057|Orange Marmalade|FEB485;O1027|Orange Splash|FEAC6C;O1003|Childhood memo|FEB05D;O1026|Energetic Light|FD9849;O1055|We all scream|FC8034;O1002|Faded Flame|FE9B2B;O1001|Sparkle Pop|FE961A;O1007|Autumn Leaf|C47B2E;O1013|Honeycomb|A16D3C"], ["เหลือง", "Y0102|Melted Ivory|F7E1B4;Y0096|Buttercream|FADDA7;Y0095|Clean Eggshell|FDD494;Y0063|Oriental Yellow|FED46F;Y0094|Tangerine Hybrid|FEC76E;Y0062|Taste of Tropics|FECB58;Y0093|Mexican Mango|FEB942;Y0091|Garlic cheddar|FDAA1A;Y0061|NY cab|FEC10B;Y0031|Sunflower|FDD200;Y0007|Wild Fire|BEA525;Y0014|Spicy Cilantro|A19134"], ["เขียวมะนาว", "G5378|Pale Yolks|EEECC2;G5371|Egg in Beer|EFECB2;G5377|Ducklings Sunshine|EDEA9E;G5370|Shine to Yellow|EBE786;G5340|Hawaiian Pine|E2E772;G5303|Flashy Chartreuse|CEDE59;G5368|Morning Bumblebees|E1D93E;G5302|Screaming Green|C1D133;G5339|Sour Green|D1D429;G5345|Shining Greenish|C1C522;G5373|Yellowish Green|B3A82D;G5313|Fresh Wilderness|8A8F34"], ["เขียว", "G5078|Bubble Bath|D0EDE1;G5054|Kid Stuff|BAE7DE;G5089|Gummy|A6E3CB;G5112|Bella Green|93DCB7;G5215|Youthman|98D26F;G5208|Under the Spell|85CA59;G5076|Synthetic Green|4AC7B0;G5046|Energetic Aqua|3FC5B7;G5111|Northen Light|2FBC88;G5045|Surf and Sea|1EA89C;G5110|Salamander|00A670;G5007|Viridian Boat|007272"], ["ฟ้าอมเขียว", "B4144|Endless Horizon|C5DEEA;B4216|Ocean Air|C3E0EA;B4143|Blue Sky Above|9DCFE7;B4178|Baby Blue|89C9E2;B4184|Clear Sky|7EC6DB;B4136|Blue Cave|52AED2;B4196|Vivid Blue|43B3CF;B4135|Sea Sapphires|0CA3D2;B4176|Blue Glacier|009AC1;B4134|Electric Blue|008DBD;B4182|Ocean Spirit|0086AD;B4283|Sea Green|009197"], ["ฟ้า-น้ำเงิน", "B4096|Instant Zen|CBDEE9;B4119|Fresh Dive|B5DBEC;B4047|Pale Sky|AAC8E6;B4113|Bright Sky|8DC7E6;B4118|Blue In Fairy Tale|84C3E4;B4112|Azure|5EAFDC;B4117|Pool Party|45ABDB;B4111|Cyan Blue|3497CE;B4085|Lightning Blue|3082BE;B4116|Blue Summer|0091C6;B4109|True Blue|0768A3;B4122|Vintage Blue|066B99"], ["ชมพู-ม่วง", "V3030|Love Story|F1D1DE;V3017|Innocent Love|F3BECC;V3023|Vintage Beetle|ECBAD1;V3004|Sugar Eyes|F2A7BA;V3016|Pink Panther|E49AAF;V3003|Fruit Dove|E6899D;V3008|Juicy Pink|D9688D;V3002|Rose' Bouncy Ball|D66589;V3001|Romantic Bacon|BF5370;V3019|Pink Thunder|B95285;V3103|Sea Holly|47519B;V3121|Blueberry Blue|37578D"], ["ครีม-น้ำตาล", "N6090|Daisy Shine|F1E9D5;N6036|Vanilla Corianders|ECE0CB;N6089|Opaque Horn|E8D7BE;N6029|Mama's Blanket|E4D3B4;N6142|Sweet Peach|DBB8A8;N6093|Caramel Pudding|CEB29A;N6088|Light Caramel|C5AA8B;N6141|Nude Walnut|AF8471;N6146|Penny Brown|996C5E;N6140|Auburn Brown|8C5442;N6032|Golden|7D6844;N6187|Sensation Rosewood|664641"], ["เบจ-เขียวหม่น", "N6360|Fragile Shell|EEEADC;N6342|Soft Sunlight|E1DDC9;N6348|Creamy Cotton Ball|E5DBB9;N6341|Ethereal Green|D8D5BB;N6364|Dreary Day|BFB6AB;N6347|Spray Green|C2B996;N6346|Dried Leaf Green|B2A87C;N6345|Mocco Olive|918A6C;N6344|Bronze Green|847A5F;N6338|High Park Breeze|79785F;N6337|Amazon Moss|5F5D44;N6272|Aegean Shadow|404F5B"], ["เทา", "K7036|White As Snow|EEEEE8;K7005|Shade of Mind|DBD9D5;K7065|Cloud Shadow|D2D9D9;K7004|The Thinker|C6C4C2;K7059|Winterland|BEC3C5;K7070|Cosmic Gray|9EA3A7;K7051|Cool Gray|9B9FA4;K7069|Stardust|83898D;K7068|Dark Aesthetic|676D6F;K7061|Urban Gray|55585F;K7049|Up All Night|4F5359;K7043|Midnight|3E4046"], ["ขาวนวล", "W9060|Sugar Dust|F4EEE4;W9023|Royal Icing|F3EFE3;W9054|White Chocolate|F2EDE3;W9052|Timeless White|F5EADC;W9030|Milky Biscuit|F6EBDB;W9010|Meringue|F2EFDD;W9056|Dawn Cloud|F5E7D8;W9028|Golden Meadow|F4EAD4;W9027|Elegant Cream|F5EACF;W9019|Melt Butter|F3E9CD;W9050|huggy|F0E1CC;W9049|Rich Vanilla|EBDCC2"]].map(([tone,str])=>({tone,colors:str.split(';').map(x=>{const[code,name,hex]=x.split('|');return{code,name,hex:'#'+hex,tone}})}));
+const STD=TOA.flatMap(t=>t.colors);
+const BASIC=[{name:'ขาว (พื้นฐาน)',hex:'#FFFFFF'},{name:'ดำ (พื้นฐาน)',hex:'#121212'}];
+const ALIAS={'แดง':'R2037','เทาเข้ม':'K7061'};
+const toaLink=c=>c.code&&/[a-z]/i.test(c.name)&&!/^#/.test(c.name)?TOA_URL+'/'+c.name.toLowerCase().replace(/[^a-z0-9]+/g,'-').replace(/^-|-$/g,'')+'/'+c.code:TOA_URL;
+const std=n=>ALIAS[n]?STD.find(c=>c.code===ALIAS[n]):BASIC.find(c=>c.name.startsWith(n)), mat=m=>MATS.find(c=>c.mat===m);
+const GRAD={
+ silver:['#eef0f2','#a9afb5','#f7f8f9','#8f959b','#d7dadd'],
+ mirror:['#ffffff','#5f656b','#fbfbfb','#3f444a','#e9e9e9'],
+ gold:['#fff0b5','#c39232','#ffe28d','#8a6416','#e8c56d'],
+ rose:['#ffdccf','#c88371','#ffe8e0','#9a5a4b','#e9b2a2'],
+ black:['#6a6d72','#2a2c30','#55585d','#17181a','#3d3f44'],
+ wood:['#b77a45','#8f5a2e','#a96d3b','#7c4c25','#b07240']
+};
+const TYPES={
+ front:{n:'อักษรไฟออกหน้า',d:'กลางวันชัด กลางคืนแจ่ม',ic:'background:#16181d;color:#fff;text-shadow:0 0 8px #fff,0 0 3px #fff'},
+ back:{n:'อักษรไฟออกหลัง',d:'หรูหรา มีระดับ',ic:'background:#2a1c0c;color:#1a1208;text-shadow:0 0 9px #ffb648,0 0 4px #ffb648'},
+ steel:{n:'อักษรสแตนเลส',d:'ด้าน/เงา เงิน ทอง ดำ โรสโกลด์',ic:'background:#e9e6df;color:#9aa0a6;text-shadow:1px 1px 0 #666,2px 2px 0 #555'},
+ zinc:{n:'อักษรซิงค์ทำสี',d:'ทำสีได้ตามแบบ',ic:'background:#eee;color:#F26B1D;text-shadow:1px 1px 0 #a34a12,2px 2px 0 #a34a12'},
+ etch:{n:'สแตนเลสกัดกรด',d:'ป้ายบริษัท สวย ทน มีคลาส',ic:'background:linear-gradient(180deg,#eef0f2,#a9afb5,#f0f1f2);color:#222;font-size:17px;border:1px solid #999'},
+ lightbox:{n:'กล่องไฟ',d:'สว่างทั้งป้าย เห็นไกล',ic:'background:#fff;color:#D71920;box-shadow:0 0 8px 1px #ffe9a8;border:2px solid #444;font-size:17px'},
+ vinyl:{n:'ป้ายไวนิล',d:'โปรโมชั่น อีเวนต์ ราคาประหยัด',ic:'background:#D71920;color:#fff;font-size:17px'},
+ ppboard:{n:'PP Board / พลาสวูด',d:'ตกแต่งร้าน Backdrop ไม่เป็นสนิม',ic:'background:#F7941D;color:#fff;font-size:17px;border-bottom:3px solid #bbb'}
+};
+const FLAT=['etch','lightbox','vinyl','ppboard'];
+let MINE=[]; try{MINE=JSON.parse(localStorage.getItem('ntr_toa_colors')||'[]')}catch(e){}
+const saveMine=()=>{try{localStorage.setItem('ntr_toa_colors',JSON.stringify(MINE))}catch(e){}};
+
+/* ---------- state ---------- */
+const S={
+ type:'front',
+ text:'NEW TR SIGN', font:'Kanit', weight:700, line2:55, spacing:2, lineGap:16,
+ face:std('แดง'), side:MATS[0], plateC:std('ขาว'),
+ light:'front', led:'white', bright:80,
+ depthCm:8, yaw:22, pitch:-10,
+ plate:'0', platePad:28, plateCm:5, plateR:8,
+ fixed:false, heightM:0.7, boxLit:false, eyelet:false, art:null,
+ logoImg:null, logoRaw:null, logoSize:120, logoPos:'left',
+ night:false, frame:true, photo:false,
+ widthM:2.0, mPerUnit:null,
+ free:false, q:null, aspect:5, target:'face'
+};
+const P={cx:.5,cy:.19,w:.5,rot:0,ty:0,tx:0};
+const isFlat=()=>FLAT.includes(S.type);
+const useArt=()=>isFlat()&&!!S.art;
+
+/* ---------- elements ---------- */
+const stage=$('#stage'), bg=$('#bg'), cv=$('#sign'), ov=$('#ov'), nightOv=$('#nightOv');
+const mctx=document.createElement('canvas').getContext('2d');
+let W=800,H=500, L=null, Hm=null;
+const V={z:1,x:0,y:0};
+
+/* ---------- undo ---------- */
+let hist=[],redo=[],lastKey=null,lastT=0;
+const snap=()=>({S:{...S,q:S.q&&S.q.map(a=>[...a])},P:{...P},bg:bg.src});
+function mark(key){
+  const now=Date.now();
+  if(key&&key===lastKey&&now-lastT<900){lastT=now;return}
+  lastKey=key||null;lastT=now;
+  hist.push(snap());if(hist.length>80)hist.shift();redo=[];updUndo();
+}
+function restore(s){
+  Object.assign(S,s.S);S.q=s.S.q&&s.S.q.map(a=>[...a]);Object.assign(P,s.P);
+  silCache=new Map();lastKey=null;
+  if(bg.src!==s.bg)setBg(s.bg);
+  syncUI();fontsReady().then(render);
+}
+function undo(){if(!hist.length)return;redo.push(snap());restore(hist.pop());updUndo()}
+function redoF(){if(!redo.length)return;hist.push(snap());restore(redo.pop());updUndo()}
+function updUndo(){$('#bUndo').disabled=!hist.length;$('#bRedo').disabled=!redo.length}
+$('#bUndo').onclick=undo;$('#bRedo').onclick=redoF;
+document.addEventListener('keydown',e=>{
+  if(!(e.ctrlKey||e.metaKey)||e.key.toLowerCase()!=='z')return;
+  const t=e.target.tagName;if(t==='TEXTAREA'||(t==='INPUT'&&/text|number/.test(e.target.type)))return;
+  e.preventDefault();e.shiftKey?redoF():undo();
+});
+
+/* ---------- helpers ---------- */
+const hexRgb=h=>{h=h.replace('#','');if(h.length===3)h=h.split('').map(c=>c+c).join('');const n=parseInt(h,16);return[(n>>16)&255,(n>>8)&255,n&255]};
+const mix=(a,b,t)=>{const A=hexRgb(a),B=hexRgb(b);return'rgb('+A.map((v,i)=>Math.round(v+(B[i]-v)*t)).join(',')+')'};
+const cssFill=c=>c.mat&&GRAD[c.mat]?`linear-gradient(180deg,${GRAD[c.mat].join(',')})`:c.hex;
+const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+let BASE=200;
+const fontStr=size=>`${S.weight} ${size}px "${S.font}", "Kanit", sans-serif`;
+const hasLS='letterSpacing' in mctx;
+const setSp=(ctx,size)=>{if(hasLS)ctx.letterSpacing=(S.spacing/100*size).toFixed(2)+'px'};
+function makeFill(ctx,c,y0,y1){
+  if(typeof c==='string')return c;
+  if(c.mat&&GRAD[c.mat]){const g=ctx.createLinearGradient(0,y0,0,y1);const s=GRAD[c.mat];s.forEach((col,i)=>g.addColorStop(i/(s.length-1),col));return g}
+  return c.hex;
+}
+let silCache=new Map();
+function silOf(c){
+  if(!S.logoImg||isFlat())return null;
+  const key=typeof c==='string'?c:(c.mat||'')+c.hex;
+  if(silCache.has(key))return silCache.get(key);
+  const s=document.createElement('canvas');s.width=S.logoImg.width;s.height=S.logoImg.height;
+  const x=s.getContext('2d');x.drawImage(S.logoImg,0,0);x.globalCompositeOperation='source-in';
+  x.fillStyle=makeFill(x,c,0,s.height);x.fillRect(0,0,s.width,s.height);
+  silCache.set(key,s);return s;
+}
+
+/* ---------- layout ---------- */
+function layout(){
+  if(useArt()){const rw=1600,rh=rw*S.art.height/S.art.width;return{items:[],w:rw,h:rh,pp:0,rw,rh,line1h:0}}
+  const lines=S.text.split('\n').map(s=>s.trim()).filter(Boolean);
+  if(!lines.length)lines.push('ป้าย');
+  const gap=BASE*S.lineGap/100;
+  const rows=[];let bw=0,bh=0;
+  lines.forEach((t,i)=>{
+    const size=i===0?BASE:BASE*S.line2/100;
+    mctx.font=fontStr(size);setSp(mctx,size);
+    const m=mctx.measureText(t);
+    const l=m.actualBoundingBoxLeft||0, r=m.actualBoundingBoxRight||m.width;
+    const asc=m.actualBoundingBoxAscent||size*.8, desc=m.actualBoundingBoxDescent||size*.2;
+    const w=Math.max(1,l+r), h=Math.max(1,asc+desc);
+    rows.push({type:'text',t,size,l,asc,w,h});
+    bw=Math.max(bw,w);bh+=h+(i?gap:0);
+  });
+  if(hasLS)mctx.letterSpacing='0px';
+  let y=0;rows.forEach((r,i)=>{if(i)y+=gap;r.bx=(bw-r.w)/2;r.by=y;y+=r.h});
+  let w=bw,h=bh,items=rows;
+  if(S.logoImg&&!isFlat()){
+    const lh=rows[0].h*S.logoSize/100, lw=lh*S.logoImg.width/S.logoImg.height, g=BASE*.22;
+    const lg={type:'logo',w:lw,h:lh};
+    if(S.logoPos==='left'){w=lw+g+bw;h=Math.max(lh,bh);lg.bx=0;lg.by=(h-lh)/2;const ox=lw+g,oy=(h-bh)/2;rows.forEach(r=>{r.bx+=ox;r.by+=oy})}
+    else{w=Math.max(lw,bw);h=lh+g+bh;lg.bx=(w-lw)/2;lg.by=0;const ox=(w-bw)/2,oy=lh+g;rows.forEach(r=>{r.bx+=ox;r.by+=oy})}
+    items=[lg,...rows];
+  }
+  const pp=S.plate==='1'?BASE*S.platePad/100:0;
+  let rw=w+2*pp,rh=h+2*pp;
+  if(S.fixed&&S.plate==='1'){const a=S.widthM/S.heightM;if(rw/rh<a)rw=rh*a;else rh=rw/a}
+  return{items,w,h,pp,rw,rh,line1h:rows[0].h};
+}
+
+function drawShapes(ctx,ox,oy,style,logoCv){
+  for(const it of L.items){
+    const x=L.ox+it.bx+ox, y=L.oy+it.by+oy;
+    if(it.type==='text'){ctx.font=fontStr(it.size);setSp(ctx,it.size);ctx.fillStyle=style;ctx.fillText(it.t,x+it.l,y+it.asc)}
+    else if(logoCv)ctx.drawImage(logoCv,x,y,it.w,it.h);
+  }
+  if(hasLS)ctx.letterSpacing='0px';
+}
+function platePath(ctx,ox,oy){
+  const x=L.pad+ox,y=L.pad+oy,w=L.rw,h=L.rh,r=Math.min(BASE*S.plateR/100,w/2,h/2);
+  ctx.beginPath();ctx.moveTo(x+r,y);ctx.lineTo(x+w-r,y);ctx.quadraticCurveTo(x+w,y,x+w,y+r);ctx.lineTo(x+w,y+h-r);
+  ctx.quadraticCurveTo(x+w,y+h,x+w-r,y+h);ctx.lineTo(x+r,y+h);ctx.quadraticCurveTo(x,y+h,x,y+h-r);ctx.lineTo(x,y+r);ctx.quadraticCurveTo(x,y,x+r,y);ctx.closePath();
+}
+const OFF=30000;
+function glowShapes(ctx,ox,oy,color,blur,alpha,passes){
+  ctx.save();ctx.globalAlpha=alpha;ctx.shadowColor=color;ctx.shadowBlur=blur;ctx.shadowOffsetX=OFF;
+  for(let i=0;i<passes;i++)drawShapes(ctx,ox-OFF,oy,color,silOf(color));
+  ctx.restore();
+}
+function glowPlate(ctx,ox,oy,color,blur,alpha){
+  ctx.save();ctx.globalAlpha=alpha;ctx.shadowColor=color;ctx.shadowBlur=blur;ctx.shadowOffsetX=OFF;
+  platePath(ctx,ox-OFF,oy);ctx.fillStyle=color;ctx.fill();ctx.restore();
+}
+function newLayer(){const c=document.createElement('canvas');c.width=cv.width;c.height=cv.height;return c}
+function darken(c,a){const x=c.getContext('2d');x.save();x.globalCompositeOperation='source-atop';x.fillStyle=`rgba(6,8,18,${a})`;x.fillRect(0,0,c.width,c.height);x.restore()}
+
+/* ---------- render sign ---------- */
+function render(){
+  BASE=200;
+  let lay=layout();
+  if(lay.rw>3000||lay.rh>3000){BASE=200*3000/Math.max(lay.rw,lay.rh);lay=layout()}
+  if(useArt()||!(S.fixed&&S.plate==='1'))S.heightM=S.widthM*lay.rh/lay.rw;
+  const flat=isFlat(),hasPlate=S.plate==='1'||flat;
+  const pxPerM=lay.rw/S.widthM;
+  let D=flat?0:S.depthCm/100*pxPerM, PD=hasPlate?S.plateCm/100*pxPerM:0;
+  D=Math.min(D,lay.rh*1.2);PD=Math.min(PD,lay.rh*1.2);
+  const pad=Math.max(BASE*1.1,(D+PD)*1.05+BASE*.6);
+  L={...lay,pad,ox:pad+(lay.rw-lay.w)/2,oy:pad+(lay.rh-lay.h)/2,D,PD};
+  cv.width=Math.ceil(lay.rw+2*pad);cv.height=Math.ceil(lay.rh+2*pad);
+  cv.style.width=cv.width+'px';cv.style.height=cv.height+'px';
+  const ctx=cv.getContext('2d');ctx.clearRect(0,0,cv.width,cv.height);
+
+  const yaw=S.yaw*Math.PI/180,pit=S.pitch*Math.PI/180;
+  const bx=-Math.sin(yaw),by=Math.sin(pit);
+  const lb={x:bx*D,y:by*D};
+  const pb={x:lb.x+bx*PD,y:lb.y+by*PD};
+  const wall=hasPlate?pb:lb;
+  L.wall=wall;
+  const night=S.night, br=S.bright/100;
+  const ledHex={white:'#eef4ff',warm:'#ffc979',same:S.face.hex}[S.led==='same'&&flat?'white':S.led];
+  const front=!flat&&(S.light==='front'||S.light==='both'), back=!flat&&(S.light==='back'||S.light==='both');
+  const box=flat&&S.boxLit;
+  const y0=L.oy,y1=L.oy+L.h;
+
+  // 1) shadow on wall (day)
+  if(!night){
+    const k=hasPlate?Math.min(1,.25+PD/(BASE*.3)):1;
+    const sx=wall.x+BASE*.035*k,sy=wall.y+BASE*.06*k;
+    if(hasPlate)glowPlate(ctx,sx,sy,'rgba(0,0,0,1)',BASE*.08*k,.4);
+    else glowShapes(ctx,sx,sy,'rgba(0,0,0,1)',BASE*.06,.42,1);
+  }
+  // 2) halo on wall
+  if(back&&!hasPlate){
+    ctx.save();if(night)ctx.globalCompositeOperation='lighter';
+    glowShapes(ctx,lb.x,lb.y,ledHex,BASE*(night?.32:.2),night?br:.18*br,night?3:1);ctx.restore();
+  }
+  if(box&&night){ctx.save();ctx.globalCompositeOperation='lighter';glowPlate(ctx,lb.x,lb.y,ledHex,BASE*.45,.55*br);ctx.restore()}
+  // 3) plate body
+  if(hasPlate){
+    const P2=newLayer(),px=P2.getContext('2d');
+    const n=Math.ceil(Math.hypot(bx,by)*PD);
+    const sideC=flat&&S.type!=='lightbox'?S.plateC:S.side;
+    const sideF=makeFill(px,sideC,L.pad,L.pad+L.rh);
+    for(let i=n;i>=1;i--){const t=i/n;platePath(px,lb.x+bx*PD*t,lb.y+by*PD*t);px.fillStyle=sideF;px.fill()}
+    if(n)darken(P2,.28);
+    if(night&&box)darken(P2,.8);
+    platePath(px,lb.x,lb.y);
+    if(useArt()){px.save();px.clip();px.drawImage(S.art,L.pad+lb.x,L.pad+lb.y,L.rw,L.rh);px.restore();platePath(px,lb.x,lb.y)}
+    else{px.fillStyle=makeFill(px,S.plateC,L.pad,L.pad+L.rh);px.fill()}
+    px.strokeStyle='rgba(0,0,0,.18)';px.lineWidth=Math.max(1,BASE*.008);px.stroke();
+    if(S.eyelet&&S.type==='vinyl'){
+      const r=Math.max(3,.012*pxPerM),ins=Math.max(r*2.2,.035*pxPerM),nx=Math.max(1,Math.round(S.widthM/.5));
+      for(let i=0;i<=nx;i++)for(const yy of [ins,L.rh-ins]){const ex=L.pad+lb.x+ins+(L.rw-2*ins)*i/nx,ey=L.pad+lb.y+yy;
+        px.beginPath();px.arc(ex,ey,r,0,7);px.fillStyle='#cfd2d6';px.fill();px.beginPath();px.arc(ex,ey,r*.5,0,7);px.fillStyle='#3b3d42';px.fill()}
+    }
+    if(night&&!box)darken(P2,.84);
+    if(night&&box){px.save();px.globalCompositeOperation='source-atop';px.fillStyle=`rgba(6,8,18,${(1-br)*.5})`;platePath(px,lb.x,lb.y);px.fill();px.restore()}
+    ctx.drawImage(P2,0,0);
+    if(!flat){
+      ctx.save();platePath(ctx,lb.x,lb.y);ctx.clip();
+      if(back){if(night)ctx.globalCompositeOperation='lighter';glowShapes(ctx,lb.x,lb.y,ledHex,BASE*(night?.28:.18),night?br:.18*br,night?3:1)}
+      else if(!night&&D>0)glowShapes(ctx,lb.x+BASE*.03,lb.y+BASE*.05,'rgba(0,0,0,1)',BASE*.05,.35,1);
+      ctx.restore();
+    }
+  }
+  // 4) letters
+  if(L.items.length){
+    const B=newLayer(),bctx=B.getContext('2d');
+    const n=Math.ceil(Math.hypot(bx,by)*D);
+    if(n>=1){
+      const sf=makeFill(bctx,S.side,y0,y1),ss=silOf(S.side);
+      for(let i=n;i>=1;i--){const t=i/n;drawShapes(bctx,bx*D*t,by*D*t,sf,ss)}
+      darken(B,.3);
+    }
+    drawShapes(bctx,0,0,makeFill(bctx,S.face,y0,y1),flat?null:S.logoImg);
+    if(D>0){
+      bctx.save();bctx.strokeStyle='rgba(0,0,0,.2)';bctx.lineWidth=Math.max(1.2,BASE*.008);
+      for(const it of L.items)if(it.type==='text'){bctx.font=fontStr(it.size);setSp(bctx,it.size);bctx.strokeText(it.t,L.ox+it.bx+it.l,L.oy+it.by+it.asc)}
+      if(hasLS)bctx.letterSpacing='0px';bctx.restore();
+    }
+    if(night)darken(B,box?(1-br)*.5:.85);
+    ctx.drawImage(B,0,0);
+  }
+  // 5) front lit
+  if(front&&night){
+    ctx.save();ctx.globalCompositeOperation='lighter';
+    glowShapes(ctx,0,0,ledHex,BASE*.22,.55*br,2);ctx.restore();
+    const lit=S.face.mat?mix(S.face.hex,'#ffffff',.35):mix(S.face.hex,'#ffffff',.18);
+    ctx.save();ctx.globalAlpha=.55+.45*br;drawShapes(ctx,0,0,lit,S.logoImg);ctx.restore();
+  }
+  const asp=L.rw/L.rh;
+  if(S.free&&S.q&&Math.abs(asp/S.aspect-1)>1e-4)refit(asp/S.aspect);
+  S.aspect=asp;
+  place();
+}
+
+/* ---------- placement: rectangle that never skews ---------- */
+function buildQ(){
+  const hw=P.w/2,hh=hw/S.aspect,a=P.ty*Math.PI/180,b=P.tx*Math.PI/180,r=P.rot*Math.PI/180,f=1.4;
+  return [[-hw,-hh],[hw,-hh],[hw,hh],[-hw,hh]].map(([x,y])=>{
+    const x1=x*Math.cos(a),z1=x*Math.sin(a);
+    const y2=y*Math.cos(b)-z1*Math.sin(b),z2=y*Math.sin(b)+z1*Math.cos(b);
+    const s=f/(f+z2),X=x1*s,Y=y2*s;
+    return[P.cx+X*Math.cos(r)-Y*Math.sin(r),P.cy+X*Math.sin(r)+Y*Math.cos(r)]});
+}
+const curQ=()=>S.free&&S.q?S.q:buildQ();
+function refit(k){
+  const q=S.q;
+  const ml=[(q[0][0]+q[3][0])/2,(q[0][1]+q[3][1])/2], mr=[(q[1][0]+q[2][0])/2,(q[1][1]+q[2][1])/2];
+  const f=(p,m)=>[m[0]+(p[0]-m[0])/k,m[1]+(p[1]-m[1])/k];
+  S.q=[f(q[0],ml),f(q[1],mr),f(q[2],mr),f(q[3],ml)];
+}
+function solve(A,b){const n=b.length;for(let i=0;i<n;i++){let p=i;for(let r=i+1;r<n;r++)if(Math.abs(A[r][i])>Math.abs(A[p][i]))p=r;[A[i],A[p]]=[A[p],A[i]];[b[i],b[p]]=[b[p],b[i]];for(let r=i+1;r<n;r++){const f=A[r][i]/A[i][i];for(let c=i;c<n;c++)A[r][c]-=f*A[i][c];b[r]-=f*b[i]}}const x=Array(n);for(let i=n-1;i>=0;i--){let s=b[i];for(let c=i+1;c<n;c++)s-=A[i][c]*x[c];x[i]=s/A[i][i]}return x}
+function homog(src,dst){const A=[],b=[];for(let i=0;i<4;i++){const[x,y]=src[i],[X,Y]=dst[i];A.push([x,y,1,0,0,0,-X*x,-X*y]);b.push(X);A.push([0,0,0,x,y,1,-Y*x,-Y*y]);b.push(Y)}const h=solve(A,b);h.push(1);return h}
+const applyH=(h,x,y)=>{const w=h[6]*x+h[7]*y+1;return[(h[0]*x+h[1]*y+h[2])/w,(h[3]*x+h[4]*y+h[5])/w]};
+const srcRect=()=>{const x=L.pad+L.wall.x,y=L.pad+L.wall.y;return[[x,y],[x+L.rw,y],[x+L.rw,y+L.rh],[x,y+L.rh]]};
+const qpx=()=>curQ().map(p=>[p[0]*W,p[1]*W]);
+function place(){
+  if(!L)return;
+  Hm=homog(srcRect(),qpx());const h=Hm;
+  cv.style.transform=`matrix3d(${h[0]},${h[3]},0,${h[6]},${h[1]},${h[4]},0,${h[7]},0,0,1,0,${h[2]},${h[5]},0,${h[8]})`;
+  drawOv();updDims();
+}
+
+/* ---------- overlay ---------- */
+let cal=null;
+const dist=(a,b)=>Math.hypot(a[0]-b[0],a[1]-b[1]);
+const cen=q=>[q.reduce((s,a)=>s+a[0],0)/4,q.reduce((s,a)=>s+a[1],0)/4];
+function rotHandle(p){const o=30/V.z,c=cen(p),m=[(p[0][0]+p[1][0])/2,(p[0][1]+p[1][1])/2],d=dist(m,c)||1;return[m[0]+(m[0]-c[0])/d*o,m[1]+(m[1]-c[1])/d*o,m]}
+function drawOv(){
+  let s='';const u=1/V.z;
+  if(S.frame&&!cal){
+    const p=qpx(),pts=p.map(a=>a.join(',')).join(' '),da=`${6*u} ${5*u}`;
+    s+=`<polygon points="${pts}" fill="none" stroke="#fff" stroke-width="${1.5*u}" stroke-dasharray="${da}" opacity=".9"/>`;
+    s+=`<polygon points="${pts}" fill="none" stroke="#D71920" stroke-width="${1.5*u}" stroke-dasharray="${da}" stroke-dashoffset="${5*u}" opacity=".9"/>`;
+    const r=(W<600?7:9)*u;
+    if(!S.free){const h=rotHandle(p);
+      s+=`<line x1="${h[2][0]}" y1="${h[2][1]}" x2="${h[0]}" y2="${h[1]}" stroke="#fff" stroke-width="${2*u}"/>`;
+      s+=`<circle cx="${h[0]}" cy="${h[1]}" r="${r+2*u}" fill="#D71920" stroke="#fff" stroke-width="${2.5*u}"/><text x="${h[0]}" y="${h[1]+5*u}" text-anchor="middle" font-size="${13*u}" fill="#fff">⟳</text>`}
+    p.forEach(a=>s+=S.free?`<circle cx="${a[0]}" cy="${a[1]}" r="${r}" fill="#ffd400" stroke="#000" stroke-width="${2.5*u}"/>`:`<rect x="${a[0]-r}" y="${a[1]-r}" width="${2*r}" height="${2*r}" rx="${3*u}" fill="#fff" stroke="#D71920" stroke-width="${3*u}"/>`);
+    const tx=(p[2][0]+p[3][0])/2,ty=Math.max(...p.map(a=>a[1]))+24*u;
+    s+=`<text x="${tx}" y="${ty}" text-anchor="middle" style="font-family:Kanit,sans-serif" font-size="${15*u}" font-weight="600" fill="#fff" stroke="rgba(0,0,0,.75)" stroke-width="${4*u}" paint-order="stroke">≈ ${S.widthM.toFixed(2)} × ${S.heightM.toFixed(2)} ม.</text>`;
+  }
+  if(cal){
+    cal.pts.forEach(a=>s+=`<circle cx="${a[0]*W}" cy="${a[1]*W}" r="${7*u}" fill="#ffd400" stroke="#000" stroke-width="${2*u}"/>`);
+    if(cal.pts.length===2)s+=`<line x1="${cal.pts[0][0]*W}" y1="${cal.pts[0][1]*W}" x2="${cal.pts[1][0]*W}" y2="${cal.pts[1][1]*W}" stroke="#ffd400" stroke-width="${3*u}"/>`;
+  }
+  ov.innerHTML=s;
+}
+const quadW=()=>(dist(S.q[0],S.q[1])+dist(S.q[3],S.q[2]))/2;
+const unitsW=()=>S.free?quadW():P.w;
+function updDims(){
+  let t=`ป้าย ≈ <b>${S.widthM.toFixed(2)} × ${S.heightM.toFixed(2)} ม.</b> (${(S.widthM*S.heightM).toFixed(2)} ตร.ม.)`;
+  if(L.line1h)t+=` · ตัวอักษรบรรทัดแรกสูง ≈ <b>${(L.line1h/L.rw*S.widthM*100).toFixed(0)} ซม.</b>`;
+  if(S.mPerUnit)t+=' · <span style="color:#1e9e4a">ตั้งสเกลแล้ว ✓</span>';
+  $('#dimTxt').innerHTML=t;
+  if(document.activeElement!==$('#wM'))$('#wM').value=S.widthM.toFixed(2);
+  if(document.activeElement!==$('#hM'))$('#hM').value=S.heightM.toFixed(2);
+}
+
+/* ---------- stage sizing ---------- */
+function fit(){
+  const wr=$('#stageWrap').getBoundingClientRect();
+  const nw=bg.naturalWidth||1600,nh=bg.naturalHeight||1000,ar=nw/nh;
+  const aw=wr.width-20,ah=wr.height-20;
+  W=Math.max(100,Math.min(aw,ah*ar));H=W/ar;
+  stage.style.width=W+'px';stage.style.height=H+'px';
+  V.z=1;V.x=0;V.y=0;applyView();
+  place();
+}
+window.addEventListener('resize',fit);
+
+/* ---------- transforms ---------- */
+function scaleQuad(k){const c=cen(S.q);S.q=S.q.map(a=>[c[0]+(a[0]-c[0])*k,c[1]+(a[1]-c[1])*k])}
+function rotQuad(deg){const c=cen(S.q),t=deg*Math.PI/180,co=Math.cos(t),si=Math.sin(t);S.q=S.q.map(a=>{const x=a[0]-c[0],y=a[1]-c[1];return[c[0]+x*co-y*si,c[1]+x*si+y*co]})}
+function syncMeters(){ // quad size -> real metres when a scale is set
+  if(!S.mPerUnit)return;
+  const nw=unitsW()*S.mPerUnit;S.heightM*=nw/S.widthM;S.widthM=nw;
+}
+function scaleBy(k){if(S.free)scaleQuad(k);else P.w=clamp(P.w*k,.02,4);syncMeters()}
+function rotateBy(d){if(S.free)rotQuad(d);else P.rot=clamp(P.rot+d,-180,180)}
+function setUnitsW(u){if(S.free)scaleQuad(u/quadW());else P.w=u}
+
+/* ---------- view zoom / pan ---------- */
+const view=$('#view');
+function applyView(){
+  V.z=clamp(V.z,1,6);V.x=clamp(V.x,W-W*V.z,0);V.y=clamp(V.y,H-H*V.z,0);
+  view.style.transform=`translate(${V.x}px,${V.y}px) scale(${V.z})`;
+  $('#bZr').textContent=Math.round(V.z*100)+'%';
+  if(L)drawOv();
+}
+function zoomAt(f,sx,sy){const nz=clamp(V.z*f,1,6),k=nz/V.z;V.x=sx-(sx-V.x)*k;V.y=sy-(sy-V.y)*k;V.z=nz;applyView()}
+$('#bZi').onclick=()=>zoomAt(1.5,W/2,H/2);
+$('#bZo').onclick=()=>zoomAt(1/1.5,W/2,H/2);
+$('#bZr').onclick=()=>{V.z=1;V.x=0;V.y=0;applyView()};
+function select(on){if(S.frame===on)return;S.frame=on;hint();drawOv()}
+
+/* ---------- pointer ---------- */
+let drag=null;const pts=new Map();
+const ptIn=(p,poly)=>{let c=false;for(let i=0,j=poly.length-1;i<poly.length;j=i++){const[xi,yi]=poly[i],[xj,yj]=poly[j];if((yi>p[1])!==(yj>p[1])&&p[0]<(xj-xi)*(p[1]-yi)/(yj-yi)+xi)c=!c}return c};
+const scr=e=>{const r=stage.getBoundingClientRect();return[e.clientX-r.left,e.clientY-r.top]};
+const toP=s=>[(s[0]-V.x)/V.z,(s[1]-V.y)/V.z];
+stage.addEventListener('pointerdown',e=>{
+  const s=scr(e),p=toP(s);
+  if(cal){
+    if(cal.pts.length<2){cal.pts.push([p[0]/W,p[1]/W]);drawOv();
+      if(cal.pts.length===1)$('#calStatus').textContent='แตะจุดที่ 2 (ปลายอีกด้าน)';
+      else{$('#calStatus').textContent='ใส่ระยะจริงระหว่าง 2 จุด แล้วกดยืนยัน';$('#calBox').style.display='flex';$('#calM').focus()}}
+    return;
+  }
+  pts.set(e.pointerId,{p,s});
+  stage.setPointerCapture(e.pointerId);e.preventDefault();
+  if(pts.size===2){
+    const[A,B]=[...pts.values()],mid=[(A.p[0]+B.p[0])/2,(A.p[1]+B.p[1])/2];
+    if(S.frame&&ptIn(mid,qpx())){mark();drag={type:'pinch',d:dist(A.p,B.p),a:Math.atan2(B.p[1]-A.p[1],B.p[0]-A.p[0])}}
+    else drag={type:'vpinch',d:dist(A.s,B.s),m:[(A.s[0]+B.s[0])/2,(A.s[1]+B.s[1])/2]};
+    return;
+  }
+  const Q=qpx(),tol=(e.pointerType==='touch'?28:16)/V.z,c=cen(Q);
+  let hi=-1;if(S.frame)Q.forEach((a,i)=>{if(dist(a,p)<tol)hi=i});
+  if(S.frame&&!S.free&&dist(rotHandle(Q),p)<tol){mark();drag={type:'r'}}
+  else if(hi>=0){mark();drag=S.free?{type:'c',i:hi}:{type:'s',d0:Math.max(8/V.z,dist(p,c)),w0:P.w}}
+  else if(ptIn(p,Q)){select(true);mark();drag={type:'m',last:p}}
+  else{select(false);drag=V.z>1?{type:'pan',last:s}:{type:'none'}}
+});
+stage.addEventListener('pointermove',e=>{
+  if(!drag||!pts.has(e.pointerId))return;
+  const s=scr(e),p=toP(s);pts.set(e.pointerId,{p,s});
+  if(drag.type==='vpinch'){
+    if(pts.size<2)return;const[A,B]=[...pts.values()];
+    const d=dist(A.s,B.s),m=[(A.s[0]+B.s[0])/2,(A.s[1]+B.s[1])/2];
+    V.x+=m[0]-drag.m[0];V.y+=m[1]-drag.m[1];zoomAt(drag.d>5?d/drag.d:1,m[0],m[1]);drag.d=d;drag.m=m;return;
+  }
+  if(drag.type==='pan'){V.x+=s[0]-drag.last[0];V.y+=s[1]-drag.last[1];drag.last=s;applyView();return}
+  if(drag.type==='none')return;
+  if(drag.type==='pinch'){
+    if(pts.size<2)return;const[A,B]=[...pts.values()];const d=dist(A.p,B.p),an=Math.atan2(B.p[1]-A.p[1],B.p[0]-A.p[0]);
+    if(drag.d>5/V.z)scaleBy(d/drag.d);let da=(an-drag.a)*180/Math.PI;if(da>180)da-=360;if(da<-180)da+=360;rotateBy(da);
+    drag.d=d;drag.a=an;
+  }else if(drag.type==='c'){S.q[drag.i]=[p[0]/W,p[1]/W];syncMeters()}
+  else if(drag.type==='s'){const c=[P.cx*W,P.cy*W];P.w=clamp(drag.w0*dist(p,c)/drag.d0,.02,4);syncMeters()}
+  else if(drag.type==='r'){const c=[P.cx*W,P.cy*W];let a=Math.atan2(p[1]-c[1],p[0]-c[0])*180/Math.PI+90;if(a>180)a-=360;if(Math.abs(a)<2.5)a=0;P.rot=a;syncP()}
+  else{const dx=(p[0]-drag.last[0])/W,dy=(p[1]-drag.last[1])/W;
+    if(S.free)S.q=S.q.map(a=>[a[0]+dx,a[1]+dy]);else{P.cx+=dx;P.cy+=dy}drag.last=p}
+  schedulePlace();
+});
+const endDrag=e=>{pts.delete(e.pointerId);if(!drag)return;if((drag.type==='pinch'||drag.type==='vpinch')&&pts.size>=2)return;
+  const t=drag.type;drag=null;pts.clear();syncP();if(S.mPerUnit&&(t==='c'||t==='s'||t==='pinch'))scheduleRender()};
+stage.addEventListener('pointerup',endDrag);stage.addEventListener('pointercancel',endDrag);
+stage.addEventListener('wheel',e=>{if(cal)return;e.preventDefault();const s=scr(e);zoomAt(Math.exp(-e.deltaY*(e.ctrlKey?0.01:0.0015)),s[0],s[1])},{passive:false});
+
+let rafP=0,rafR=0;
+function schedulePlace(){if(!rafP)rafP=requestAnimationFrame(()=>{rafP=0;place()})}
+function scheduleRender(){if(!rafR)rafR=requestAnimationFrame(()=>{rafR=0;render()})}
+
+/* ---------- placement controls ---------- */
+function syncP(){$$('input[data-p]').forEach(el=>{const k=el.dataset.p;el.value=P[k];$('#v_'+k).textContent=(+P[k]).toFixed(k==='rot'?1:0)+el.dataset.u})}
+$$('input[data-p]').forEach(el=>el.addEventListener('input',()=>{const k=el.dataset.p;mark('p:'+k);P[k]=+el.value;$('#v_'+k).textContent=el.value+el.dataset.u;schedulePlace()}));
+$('#bStraight').onclick=()=>{mark();
+  if(S.free){const c=cen(S.q);Object.assign(P,{cx:c[0],cy:c[1],w:quadW()});S.free=false;S.q=null}
+  P.rot=0;P.ty=0;P.tx=0;syncUI();place()};
+$('#bFree').onclick=()=>{mark();
+  if(!S.free){S.q=buildQ();S.free=true}
+  else{const q=S.q,c=cen(q);Object.assign(P,{cx:c[0],cy:c[1],w:quadW(),rot:Math.atan2(q[1][1]-q[0][1],q[1][0]-q[0][0])*180/Math.PI,ty:0,tx:0});S.free=false;S.q=null}
+  syncUI();place()};
+$('#wM').addEventListener('change',e=>{
+  const v=clamp(+e.target.value||S.widthM,.05,60);mark();
+  if(!(S.fixed&&!useArt()))S.heightM*=v/S.widthM;
+  if(S.mPerUnit)setUnitsW(v/S.mPerUnit);
+  S.widthM=v;render();
+});
+$('#hM').addEventListener('change',e=>{const v=clamp(+e.target.value||S.heightM,.05,60);mark();S.heightM=v;render()});
+
+/* ---------- calibration ---------- */
+$('#bCal').onclick=()=>{
+  if(cal){cal=null;$('#calStatus').textContent='';$('#calBox').style.display='none';drawOv();return}
+  cal={pts:[]};$('#calStatus').textContent='แตะจุดที่ 1 บนรูป (เช่น ขอบประตูด้านซ้าย)';drawOv();
+};
+$('#calOk').onclick=()=>{
+  const m=+$('#calM').value;if(!cal||cal.pts.length<2||!(m>0)){$('#calStatus').textContent='ใส่ระยะจริงเป็นเมตร เช่น 0.90';return}
+  mark();
+  S.mPerUnit=m/dist(cal.pts[0],cal.pts[1]);
+  cal=null;$('#calBox').style.display='none';$('#calStatus').textContent='ตั้งสเกลแล้ว ป้ายปรับเป็นขนาดจริง '+S.widthM.toFixed(2)+' ม.';
+  setUnitsW(S.widthM/S.mPerUnit);render();
+};
+
+/* ---------- photo ---------- */
+function loadImageFile(file,maxSide,cb){
+  const fr=new FileReader();fr.onload=()=>{const im=new Image();im.onload=()=>{
+    const k=Math.min(1,maxSide/Math.max(im.width,im.height));const c=document.createElement('canvas');
+    c.width=Math.round(im.width*k);c.height=Math.round(im.height*k);c.getContext('2d').drawImage(im,0,0,c.width,c.height);cb(c)};im.src=fr.result};
+  fr.readAsDataURL(file);
+}
+function setBg(src){bg.onload=()=>{fit()};bg.src=src}
+function newPhoto(c){mark();S.photo=true;S.mPerUnit=null;S.free=false;S.q=null;Object.assign(P,{cx:.5,cy:c.height/c.width*.3,w:.4,rot:0,ty:0,tx:0});
+  setBg(c.toDataURL('image/jpeg',.92));syncUI();$('#calStatus').textContent='รูปใหม่ — กด 📏 ตั้งสเกลเพื่อให้ขนาดตรงของจริง'}
+$('#upPhoto').onclick=()=>$('#fPhoto').click();
+$('#fPhoto').onchange=e=>{const f=e.target.files[0];if(f)loadImageFile(f,2400,newPhoto);e.target.value=''};
+stage.addEventListener('dragover',e=>e.preventDefault());
+stage.addEventListener('drop',e=>{e.preventDefault();const f=e.dataTransfer.files[0];if(f&&f.type.startsWith('image/'))loadImageFile(f,2400,newPhoto)});
+let WALL=null;
+$('#useWall').onclick=()=>{mark();S.photo=false;S.mPerUnit=null;setBg(WALL)};
+function defaultWall(){
+  const c=document.createElement('canvas');c.width=1600;c.height=1000;const x=c.getContext('2d');
+  let g=x.createLinearGradient(0,0,0,600);g.addColorStop(0,'#d6d1c8');g.addColorStop(1,'#c3bdb3');x.fillStyle=g;x.fillRect(0,0,1600,600);
+  const id=x.getImageData(0,0,1600,600);for(let i=0;i<id.data.length;i+=4){const n=(Math.random()-.5)*12;id.data[i]+=n;id.data[i+1]+=n;id.data[i+2]+=n}x.putImageData(id,0,0);
+  x.fillStyle='#7d786f';x.fillRect(0,585,1600,26);
+  x.fillStyle='#9a958c';x.fillRect(0,611,1600,330);
+  g=x.createLinearGradient(0,611,0,930);g.addColorStop(0,'#3b4655');g.addColorStop(1,'#1d242e');x.fillStyle=g;x.fillRect(110,625,1380,305);
+  x.save();x.globalAlpha=.12;x.fillStyle='#fff';x.beginPath();x.moveTo(250,625);x.lineTo(470,625);x.lineTo(300,930);x.lineTo(120,930);x.closePath();x.fill();
+  x.beginPath();x.moveTo(900,625);x.lineTo(1000,625);x.lineTo(860,930);x.lineTo(760,930);x.closePath();x.fill();x.restore();
+  x.fillStyle='#5d636b';[110,455,800,1145,1480].forEach(v=>x.fillRect(v,625,10,305));
+  x.fillStyle='#b5b0a7';x.fillRect(0,930,1600,70);x.fillStyle='#8f8a81';x.fillRect(0,930,1600,6);
+  return c.toDataURL('image/jpeg',.9);
+}
+
+/* ---------- artwork (flat signs) ---------- */
+$('#upArt').onclick=()=>$('#fArt').click();
+$('#fArt').onchange=e=>{const f=e.target.files[0];if(f)loadImageFile(f,2000,c=>{mark();S.art=c;syncUI();render();fitOnPhoto()});e.target.value=''};
+$('#rmArt').onclick=()=>{if(!S.art)return;mark();S.art=null;syncUI();render()};
+
+/* ---------- logo ---------- */
+$('#upLogo').onclick=()=>$('#fLogo').click();
+$('#fLogo').onchange=e=>{const f=e.target.files[0];if(f)loadImageFile(f,800,c=>{mark();S.logoRaw=c;applyLogo()});e.target.value=''};
+$('#rmLogo').onclick=()=>{if(!S.logoRaw)return;mark();S.logoRaw=null;applyLogo()};
+$('#cutWhite').onchange=()=>{mark();applyLogo()};
+function applyLogo(){
+  silCache=new Map();
+  if(!S.logoRaw){S.logoImg=null;scheduleRender();return}
+  const c=document.createElement('canvas');c.width=S.logoRaw.width;c.height=S.logoRaw.height;const x=c.getContext('2d');x.drawImage(S.logoRaw,0,0);
+  if($('#cutWhite').checked){const d=x.getImageData(0,0,c.width,c.height),a=d.data;for(let i=0;i<a.length;i+=4){const m=Math.min(a[i],a[i+1],a[i+2]);if(m>235)a[i+3]=0;else if(m>205)a[i+3]=Math.round(a[i+3]*(235-m)/30)}x.putImageData(d,0,0)}
+  const d=x.getImageData(0,0,c.width,c.height).data;let t=c.height,b=0,l=c.width,r=0;
+  for(let y=0;y<c.height;y++)for(let xx=0;xx<c.width;xx++)if(d[(y*c.width+xx)*4+3]>10){if(y<t)t=y;if(y>b)b=y;if(xx<l)l=xx;if(xx>r)r=xx}
+  if(r>l&&b>t){const o=document.createElement('canvas');o.width=r-l+1;o.height=b-t+1;o.getContext('2d').drawImage(c,-l,-t);S.logoImg=o}else S.logoImg=c;
+  scheduleRender();
+}
+
+/* ---------- sign types ---------- */
+Object.entries(TYPES).forEach(([k,t])=>{const b=document.createElement('button');b.dataset.t=k;
+  b.innerHTML=`<span class="ic" style="${t.ic}">${FLAT.includes(k)?'ป้าย':'A'}</span><span class="tx"><b>${t.n}</b><span>${t.d}</span></span>`;
+  b.onclick=()=>applyType(k);$('#types').appendChild(b)});
+function applyType(t){
+  mark();S.type=t;
+  Object.assign(S,{plate:'0',fixed:false,boxLit:false,eyelet:false,light:'none',target:'face'});
+  const red=std('แดง'),w=S.widthM;
+  if(t==='front'){Object.assign(S,{light:'front',depthCm:8});if(S.face.mat)S.face=red;S.side=mat('silver')}
+  if(t==='back')Object.assign(S,{light:'back',led:'warm',depthCm:5,face:mat('gold'),side:mat('gold')});
+  if(t==='steel')Object.assign(S,{depthCm:3,face:mat('silver'),side:mat('silver')});
+  if(t==='zinc'){S.depthCm=5;if(S.face.mat)S.face=red;S.side=S.face}
+  if(t==='etch')Object.assign(S,{plate:'1',fixed:true,plateCm:0,plateR:2,platePad:45,plateC:mat('silver'),face:std('ดำ'),heightM:w*.6,target:'plate'});
+  if(t==='lightbox')Object.assign(S,{plate:'1',fixed:true,boxLit:true,plateCm:12,plateR:3,platePad:45,plateC:std('ขาว'),face:red,side:std('เทาเข้ม'),heightM:w/3,target:'plate'});
+  if(t==='vinyl')Object.assign(S,{plate:'1',fixed:true,eyelet:true,plateCm:0,plateR:0,platePad:60,plateC:red,face:std('ขาว'),heightM:w/3,target:'plate'});
+  if(t==='ppboard')Object.assign(S,{plate:'1',fixed:true,plateCm:.5,plateR:0,platePad:60,plateC:std('ขาว'),face:red,heightM:w/2,target:'plate'});
+  if(S.led==='same'&&isFlat())S.led='white';
+  if(!S.mPerUnit&&isFlat()){const k=S.heightM/S.widthM;S.widthM={etch:.6,lightbox:2,vinyl:3,ppboard:1.2}[t];S.heightM=S.widthM*k}
+  silCache=new Map();syncUI();render();fitOnPhoto();
+}
+function fitOnPhoto(){ // keep a tall sign inside the photo when no real scale is set
+  if(S.free||S.mPerUnit)return;const maxH=.38*H/W;
+  if(P.w/S.aspect>maxH){P.w=maxH*S.aspect;place()}
+}
+
+/* ---------- controls ---------- */
+const fontSel=$('#font'),wSel=$('#weight');
+FONTS.forEach(([f])=>{const o=document.createElement('option');o.value=f;o.textContent=f;o.style.fontFamily=`"${f}"`;fontSel.appendChild(o)});
+function fillWeights(){const F=FONTS.find(a=>a[0]===S.font);wSel.innerHTML='';const names={300:'บาง',400:'ปกติ',500:'กลาง',600:'หนา',700:'หนา',800:'หนามาก',900:'หนาพิเศษ'};
+  F[1].forEach(w=>{const o=document.createElement('option');o.value=w;o.textContent=w+' '+names[w];wSel.appendChild(o)});
+  if(!F[1].includes(+S.weight))S.weight=F[2];wSel.value=S.weight}
+async function fontsReady(){try{await document.fonts.load(fontStr(100),S.text||'ก')}catch(e){}}
+fontSel.onchange=async()=>{mark();S.font=fontSel.value;fillWeights();await fontsReady();render()};
+wSel.onchange=async()=>{mark();S.weight=+wSel.value;await fontsReady();render()};
+$('#txt').addEventListener('input',async e=>{mark('text');S.text=e.target.value;await fontsReady();scheduleRender()});
+
+$$('input[type=range][data-k]').forEach(el=>{
+  const k=el.dataset.k,u=el.dataset.u||'';
+  el.addEventListener('input',()=>{mark('r:'+k);S[k]=+el.value;$('#v_'+k).textContent=el.value+u;scheduleRender()});
+});
+$$('.seg[data-g]').forEach(g=>{
+  const k=g.dataset.g;
+  g.addEventListener('click',e=>{const b=e.target.closest('button');if(!b||S[k]===b.dataset.v)return;
+    mark();S[k]=b.dataset.v;syncUI();scheduleRender()});
+});
+
+/* colors */
+function swBtn(c,mine,idx){
+  const b=document.createElement('button');b.style.background=cssFill(c);b.title=c.name+(c.code?' · TOA '+c.code:'');
+  if(c.code&&mine){const s=document.createElement('span');s.className='c';s.textContent=c.code;b.appendChild(s)}
+  b.onclick=()=>setColor(c);
+  if(mine){const del=ev=>{ev.preventDefault();MINE.splice(idx,1);saveMine();buildSw()};b.oncontextmenu=del;let tm;b.addEventListener('touchstart',()=>{tm=setTimeout(()=>del(new Event('x')),700)},{passive:true});b.addEventListener('touchend',()=>clearTimeout(tm))}
+  return b;
+}
+const tgtColor=()=>S.target==='face'?S.face:S.target==='side'?S.side:S.plateC;
+function buildSw(){
+  const cur=tgtColor();
+  [['#swMat',MATS.concat(BASIC),0],['#swStd',STD,0],['#swMine',MINE,1]].forEach(([id,arr,mine])=>{const box=$(id);box.innerHTML='';
+    arr.forEach((c,i)=>{const b=swBtn(c,mine,i);if(c.hex===cur.hex&&(c.mat||'')===(cur.mat||'')&&c.name===cur.name)b.classList.add('on');box.appendChild(b)})});
+  if(!MINE.length)$('#swMine').innerHTML='<div class="small" style="grid-column:1/-1">ยังไม่มี</div>';
+  $('#curC i').style.background=cssFill(cur);$('#curC span').textContent=cur.name+(cur.code?' · TOA '+cur.code:'')+(cur.mat?'':' · '+cur.hex.toUpperCase());
+  const lk=$('#curLink');lk.style.display=cur.code?'':'none';lk.href=toaLink(cur);
+}
+function setColor(c){mark();if(S.target==='face')S.face=c;else if(S.target==='side')S.side=c;else S.plateC=c;silCache=new Map();buildSw();scheduleRender()}
+$('#tgt').addEventListener('click',e=>{const b=e.target.closest('button');if(!b)return;S.target=b.dataset.t;syncUI()});
+const normHex=v=>{v=v.trim().replace(/^#?/,'#');return /^#[0-9a-f]{6}$/i.test(v)?v.toUpperCase():null};
+$('#cHex').addEventListener('input',e=>{const h=normHex(e.target.value);if(h)$('#cPick').value=h});
+$('#cPick').addEventListener('input',e=>{$('#cHex').value=e.target.value.toUpperCase()});
+$('#cCode').addEventListener('change',e=>{const c=STD.find(x=>x.code===e.target.value.trim().toUpperCase());if(c){$('#cHex').value=c.hex;$('#cPick').value=c.hex;$('#cName').value=c.name}});
+const pickC=()=>{const code=$('#cCode').value.trim().toUpperCase(),known=STD.find(x=>x.code===code);if(known)return known;
+  const hex=normHex($('#cHex').value)||$('#cPick').value.toUpperCase();return{name:$('#cName').value.trim()||(code?'TOA '+code:hex),hex,code}};
+$('#cUse').onclick=()=>setColor(pickC());
+$('#cAdd').onclick=()=>{const c=pickC();if(!MINE.some(m=>m.hex===c.hex&&m.code===c.code))MINE.push(c);saveMine();setColor(c);$('#cCode').value='';$('#cName').value='';$('#cHex').value=''};
+
+/* day / night / frame */
+function hint(){
+  const lit=isFlat()?S.boxLit:S.light!=='none';
+  $('#hint').textContent=S.night&&!lit?'ป้ายแบบนี้ไม่มีไฟ — กลางคืนต้องใช้ไฟส่องจากภายนอก'
+   :!S.night&&lit?'💡 กด 🌙 กลางคืน เพื่อดูตอนเปิดไฟ'
+   :S.free?'โหมด 4 มุมอิสระ: ลากจุดเหลืองทีละมุม · กด “จัดให้ตรง” เพื่อกลับเป็นสี่เหลี่ยม'
+   :S.frame?'ลากป้ายเพื่อย้าย · ลากมุมเพื่อย่อ/ขยาย · ⟳ หมุน · แตะที่ว่างเพื่อซ่อนกรอบ · ซูมรูป: ล้อเมาส์ / 2 นิ้ว / ＋ －'
+   :'แตะที่ป้ายเพื่อปรับขนาด/ตำแหน่ง · ซูมรูป: ล้อเมาส์ / 2 นิ้ว / ＋ － · ซูมแล้วลากที่ว่างเพื่อเลื่อนรูป';
+}
+function setNight(v){S.night=v;syncUI();render()}
+$('#bDay').onclick=()=>setNight(false);$('#bNight').onclick=()=>setNight(true);
+
+/* ---------- sync UI from state ---------- */
+function syncUI(){
+  const flat=isFlat(),art=useArt();
+  $$('#types button').forEach(b=>b.classList.toggle('on',b.dataset.t===S.type));
+  $$('input[type=range][data-k]').forEach(el=>{const k=el.dataset.k;el.value=S[k];$('#v_'+k).textContent=S[k]+(el.dataset.u||'')});
+  $$('.seg[data-g]').forEach(g=>g.querySelectorAll('button').forEach(b=>b.classList.toggle('on',b.dataset.v===String(S[g.dataset.g]))));
+  if($('#txt').value!==S.text)$('#txt').value=S.text;
+  fontSel.value=S.font;fillWeights();
+  const show={letters:!flat,flat:flat,light:!flat||S.type==='lightbox',plateopts:flat||S.plate==='1',fixed:S.fixed&&S.plate==='1'&&!art};
+  $$('[data-for]').forEach(el=>el.style.display=show[el.dataset.for]?'':'none');
+  $('#textBox').style.display=art?'none':'';
+  $('#stdBox').style.display=S.free?'none':'';
+  $('#bFree').classList.toggle('pri',S.free);$('#bFree').textContent=S.free?'✓ กำลังปรับ 4 มุมอิสระ':'ปรับ 4 มุมอิสระ';
+  const tb=$$('#tgt button');tb[0].textContent=flat?'สีข้อความ':'หน้าตัวอักษร';tb[2].textContent=flat?'สีพื้นป้าย':'แผ่นรอง';
+  tb[1].style.display=flat&&S.type!=='lightbox'?'none':'';tb[2].style.display=flat||S.plate==='1'?'':'none';tb[0].style.display=art?'none':'';
+  if(tb.find(b=>b.dataset.t===S.target).style.display==='none')S.target=art?'plate':'face';
+  tb.forEach(b=>b.classList.toggle('on',b.dataset.t===S.target));
+  $('#bDay').classList.toggle('on',!S.night);$('#bNight').classList.toggle('on',S.night);nightOv.style.display=S.night?'block':'none';
+  syncP();buildSw();hint();updUndo();
+}
+
+/* ---------- export ---------- */
+function tri(ctx,img,s,d){
+  const[[x0,y0],[x1,y1],[x2,y2]]=s,[[u0,v0],[u1,v1],[u2,v2]]=d;
+  const cx=(u0+u1+u2)/3,cy=(v0+v1+v2)/3,ex=(u,v)=>{const dx=u-cx,dy=v-cy,l=Math.hypot(dx,dy)||1;return[u+dx/l*.9,v+dy/l*.9]};
+  const A=ex(u0,v0),B=ex(u1,v1),C=ex(u2,v2);
+  const den=x0*(y1-y2)+x1*(y2-y0)+x2*(y0-y1);if(Math.abs(den)<1e-9)return;
+  const a=(u0*(y1-y2)+u1*(y2-y0)+u2*(y0-y1))/den,c=(u0*(x2-x1)+u1*(x0-x2)+u2*(x1-x0))/den,e=(u0*(x1*y2-x2*y1)+u1*(x2*y0-x0*y2)+u2*(x0*y1-x1*y0))/den;
+  const b=(v0*(y1-y2)+v1*(y2-y0)+v2*(y0-y1))/den,dd=(v0*(x2-x1)+v1*(x0-x2)+v2*(x1-x0))/den,f=(v0*(x1*y2-x2*y1)+v1*(x2*y0-x0*y2)+v2*(x0*y1-x1*y0))/den;
+  ctx.save();ctx.beginPath();ctx.moveTo(A[0],A[1]);ctx.lineTo(B[0],B[1]);ctx.lineTo(C[0],C[1]);ctx.closePath();ctx.clip();
+  ctx.setTransform(a,b,c,dd,e,f);
+  const sx=Math.max(0,Math.floor(Math.min(x0,x1,x2))-2),sy=Math.max(0,Math.floor(Math.min(y0,y1,y2))-2);
+  const sw=Math.min(img.width-sx,Math.ceil(Math.max(x0,x1,x2))+2-sx),sh=Math.min(img.height-sy,Math.ceil(Math.max(y0,y1,y2))+2-sy);
+  if(sw>0&&sh>0)ctx.drawImage(img,sx,sy,sw,sh,sx,sy,sw,sh);
+  ctx.restore();
+}
+function snapshot(){
+  const nw=bg.naturalWidth,nh=bg.naturalHeight,ow=Math.min(nw,2400),k=ow/W,oh=Math.round(ow*nh/nw);
+  const c=document.createElement('canvas');c.width=ow;c.height=oh;const x=c.getContext('2d');
+  x.drawImage(bg,0,0,ow,oh);
+  if(S.night){x.fillStyle='rgba(5,8,22,.72)';x.fillRect(0,0,ow,oh)}
+  const h=Hm,nx=28,ny=Math.max(8,Math.min(40,Math.round(28*cv.height/cv.width)));
+  const gp=(i,j)=>[cv.width*i/nx,cv.height*j/ny];
+  const mp=p=>{const r=applyH(h,p[0],p[1]);return[r[0]*k,r[1]*k]};
+  for(let j=0;j<ny;j++)for(let i=0;i<nx;i++){
+    const a=gp(i,j),b=gp(i+1,j),cc=gp(i+1,j+1),d=gp(i,j+1);
+    tri(x,cv,[a,b,cc],[mp(a),mp(b),mp(cc)]);tri(x,cv,[a,cc,d],[mp(a),mp(cc),mp(d)]);
+  }
+  const fs=Math.max(14,ow*.016);x.font=`600 ${fs}px Kanit, sans-serif`;
+  const tag='NEW TR SIGN · ภาพจำลอง';const tw=x.measureText(tag).width;
+  x.fillStyle='rgba(215,25,32,.92)';x.fillRect(ow-tw-fs*1.4,oh-fs*2.1,tw+fs*1.4,fs*2.1);x.fillStyle='#fff';x.fillText(tag,ow-tw-fs*.7,oh-fs*.7);
+  return c.toDataURL('image/jpeg',.9);
+}
+function modal(title,html,copyText){
+  $('#mTitle').textContent=title;$('#mBody').innerHTML=html;$('#modal').style.display='flex';
+  const cb=$('#mCopy');cb.style.display=copyText?'':'none';
+  cb.onclick=async()=>{try{await navigator.clipboard.writeText(copyText);cb.textContent='คัดลอกแล้ว ✓'}catch(e){const t=$('#mBody textarea');if(t){t.select();cb.textContent='เลือกข้อความแล้ว กด Ctrl/⌘+C'}}setTimeout(()=>cb.textContent='คัดลอกข้อความ',2000)};
+}
+$('#mClose').onclick=()=>$('#modal').style.display='none';
+$('#modal').onclick=e=>{if(e.target.id==='modal')$('#modal').style.display='none'};
+$('#bShot').onclick=()=>{
+  $('#bShot').textContent='⏳ กำลังสร้าง...';
+  setTimeout(()=>{let url;try{url=snapshot()}catch(e){url=null}
+    $('#bShot').textContent='📷 บันทึกภาพ';
+    if(!url){modal('บันทึกภาพไม่สำเร็จ','<p>ลองใหม่อีกครั้ง</p>');return}
+    modal('ภาพจำลองป้าย',`<img src="${url}" alt="ภาพจำลองป้าย"><p class="note" style="text-align:center">มือถือ: กดค้างที่รูป แล้วเลือก “บันทึกรูปภาพ” · คอม: คลิกขวา → “บันทึกรูปภาพเป็น…”</p>`);
+  },30);
+};
+function specText(){
+  const flat=isFlat(),art=useArt();
+  const used=[];const cn=c=>{if(c.code&&!used.includes(c))used.push(c);return c.name+(c.code?` (TOA ${c.code} · ${c.hex.toUpperCase()})`:'')};
+  const light={none:'ไม่มีไฟ',front:'ไฟออกหน้า',back:'ไฟออกหลัง (Halo)',both:'ไฟออกหน้า + ออกหลัง'}[S.light];
+  const led={white:'แสงขาว (Daylight)',warm:'แสงวอร์มไวท์',same:'แสงตามสีหน้าอักษร'}[S.led];
+  const o=['📐 สเปกป้าย — NEW TR SIGN','ประเภท: '+TYPES[S.type].n];
+  if(art)o.push('แบบ: ใช้ไฟล์อาร์ตเวิร์กของลูกค้า');
+  else{o.push('ข้อความ: '+S.text.split('\n').filter(s=>s.trim()).join(' / '));
+    o.push(`ฟอนต์: ${S.font} (${S.weight})`+(S.logoImg&&!flat?` + โลโก้ (${S.logoPos==='left'?'ซ้าย':'บน'})`:''));
+    o.push((flat?'สีข้อความ: ':'สีหน้าตัวอักษร: ')+cn(S.face))}
+  if(flat){if(!art)o.push('สีพื้นป้าย: '+cn(S.plateC));if(S.plateCm>0)o.push(`ความหนา: ~${S.plateCm} ซม.`);
+    if(S.type==='lightbox')o.push('ไฟ: กล่องไฟ · '+led);if(S.type==='vinyl')o.push('เจาะตาไก่รอบป้าย')}
+  else{o.push('ขอบข้าง: '+cn(S.side));
+    o.push('แผ่นรอง: '+(S.plate==='1'?`${cn(S.plateC)} หนา ~${S.plateCm} ซม.`:'ไม่มี (ติดผนังโดยตรง)'));
+    o.push('ไฟ: '+light+(S.light!=='none'?' · '+led:''));
+    o.push(`ความหนาตัวอักษร: ~${S.depthCm} ซม.`)}
+  o.push(`ขนาดป้ายโดยประมาณ: กว้าง ${S.widthM.toFixed(2)} ม. × สูง ${S.heightM.toFixed(2)} ม. (${(S.widthM*S.heightM).toFixed(2)} ตร.ม.)`);
+  if(L.line1h)o.push(`ความสูงตัวอักษรบรรทัดแรก: ~${(L.line1h/L.rw*S.widthM*100).toFixed(0)} ซม.`);
+  used.forEach(c=>o.push(`ดูสีจริง ${c.code}: ${toaLink(c)}`));
+  o.push('*ขนาดและสีเป็นค่าประมาณจากภาพจำลอง ยืนยันอีกครั้งก่อนผลิต');
+  return o.join('\n');
+}
+$('#bSpec').onclick=()=>{const t=specText();modal('สรุปสเปกป้าย (ส่งลูกค้า/ใบเสนอราคา)',`<textarea readonly>${t.replace(/</g,'&lt;')}</textarea>`,t)};
+
+/* ---------- request realistic render via LINE OA ---------- */
+const LINE_ID='@newtr.sign';
+const LINE_ADD='https://lin.ee/VweAJV2';
+const r4=v=>Math.round(v*1e4)/1e4;
+function specCode(){
+  const col=c=>{const o={h:c.hex};if(c.mat)o.m=c.mat;if(c.code)o.c=c.code;return o};
+  const ar=W/H;
+  const sp={v:1,t:S.type,x:S.text,f:S.font,w:+S.weight,l2:S.line2,sp:S.spacing,lg:S.lineGap,
+    fc:col(S.face),sc:col(S.side),pc:col(S.plateC),li:S.light,led:S.led,br:S.bright,d:S.depthCm,
+    pl:S.plate,pp:S.platePad,pt:S.plateCm,pr:S.plateR,fx:S.fixed?1:0,bl:S.boxLit?1:0,ey:S.eyelet?1:0,
+    W:r4(S.widthM),H:r4(S.heightM),lo:S.logoImg&&!isFlat()?1:0,la:S.logoImg?r4(S.logoImg.width/S.logoImg.height):1,cw:$('#cutWhite').checked?1:0,lp:S.logoPos,ls:S.logoSize,art:useArt()?1:0,
+    ia:r4(ar),q:curQ().map(p=>[r4(p[0]),r4(p[1]*ar)])};
+  const b=btoa(unescape(encodeURIComponent(JSON.stringify(sp))));
+  return 'NTR1:'+b.replace(/\+/g,'-').replace(/\//g,'_').replace(/=+$/,'');
+}
+function requestText(){
+  const cn=c=>c.name+(c.code?` (TOA ${c.code})`:'');
+  const flat=isFlat(),art=useArt();
+  const light={none:'ไม่มีไฟ',front:'ไฟออกหน้า',back:'ไฟออกหลัง',both:'ไฟออกหน้า+หลัง'}[S.light];
+  const o=['สวัสดีครับ ขอภาพเสมือนจริงป้ายตามแบบนี้ครับ 🙏','ประเภท: '+TYPES[S.type].n];
+  if(art)o.push('แบบ: ใช้ไฟล์อาร์ตเวิร์ก (จะส่งไฟล์ในแชท)');
+  else o.push('ข้อความ: '+S.text.split('\n').filter(x=>x.trim()).join(' / '));
+  o.push(`ขนาดประมาณ: ${S.widthM.toFixed(2)} × ${S.heightM.toFixed(2)} ม.`);
+  if(!art)o.push((flat?'สีข้อความ: ':'สีหน้า: ')+cn(S.face));
+  if(flat)o.push('สีพื้นป้าย: '+cn(S.plateC));
+  else o.push('ไฟ: '+light);
+  if(S.logoImg&&!flat)o.push('มีโลโก้ (จะส่งไฟล์ในแชท)');
+  o.push('','📷 จะส่งรูปหน้างานตามไปในแชทนี้ครับ','','รหัสแบบ (สำหรับทีมงาน):',specCode());
+  return o.join('\n');
+}
+const openReal=()=>{
+  const t=requestText();
+  const url='https://line.me/R/oaMessage/'+encodeURIComponent(LINE_ID)+'/?'+encodeURIComponent(t);
+  const add=LINE_ADD;
+  const warn=S.photo?'':`<div class="warn">⚠️ ยังไม่ได้ใช้รูปหน้างานจริง — กด <b>ปิด</b> แล้วอัปโหลดรูปหน้าร้าน (ข้อ 2) และวางป้ายให้ตรงตำแหน่งก่อน ภาพเสมือนจริงจะทำบนรูปนั้น</div>`;
+  const html=`${warn}<p style="margin:0 0 6px">รับภาพป้ายเสมือนจริง <b>ทั้งกลางวันและกลางคืน</b> บนรูปหน้าร้านของคุณ ส่งให้ทาง LINE <b>${LINE_ID}</b> ฟรี</p>
+  ${S.photo?`<div class="lstep"><span class="ln">1</span><div><b>แอดเพื่อน LINE ร้าน</b> (ถ้าแอดแล้วข้ามได้)</div></div>
+  <a class="btn lineBtn" href="${add}" target="_blank" rel="noopener">➕ แอดเพื่อน ${LINE_ID}</a>
+  <div class="lstep"><span class="ln">2</span><div><b>ส่งแบบป้ายให้ร้าน</b> LINE จะเปิดพร้อมข้อความ กดส่งได้เลย</div></div>
+  <a class="btn lineBtn" href="${url}" target="_blank" rel="noopener">💬 ส่งแบบป้ายทาง LINE</a>
+  <div class="lstep"><span class="ln">3</span><div>ส่ง <b>รูปหน้างานรูปเดียวกับที่ใช้ในหน้านี้</b> ตามในแชท มีโลโก้หรือไฟล์แบบ ส่งมาด้วยได้เลย</div></div>
+  <p class="note" style="margin-top:12px">ใช้คอมพิวเตอร์? กดแอดเพื่อนด้านบนแล้วสแกน QR ด้วยมือถือ จากนั้นคัดลอกข้อความด้านล่างไปวางในแชท</p>
+  <textarea readonly style="min-height:120px">${t.replace(/</g,'&lt;')}</textarea>`:''}`;
+  modal('✨ ขอภาพเสมือนจริง',html,S.photo?t:null);
+};
+$('#bReal').onclick=openReal;$('#bReal2').onclick=openReal;
+
+/* ---------- init ---------- */
+syncUI();
+(async()=>{
+  WALL=defaultWall();setBg(WALL);
+  try{await document.fonts.ready}catch(e){}
+  await fontsReady();
+  render();fit();
+  setTimeout(async()=>{await fontsReady();render()},1200);
+})();
+})();
+</script>
+</body>
+</html>
