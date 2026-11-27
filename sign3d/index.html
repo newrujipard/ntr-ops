@@ -359,7 +359,7 @@ const saveMine=()=>{try{localStorage.setItem('ntr_toa_colors',JSON.stringify(MIN
 const S={
  type:'front',
  text:'NEW TR SIGN', font:'Kanit', weight:700, line2:55, spacing:2, lineGap:16,
- face:std('แดง'), side:MATS[0], plateC:std('ขาว'),
+ face:std('ขาว'), side:MATS[0], plateC:std('ขาว'),
  light:'front', led:'white', bright:80,
  depthCm:8, yaw:22, pitch:-10,
  plate:'0', platePad:28, plateCm:5, plateR:8,
@@ -843,7 +843,7 @@ function applyType(t){
   mark();S.type=t;
   Object.assign(S,{plate:'0',fixed:false,boxLit:false,eyelet:false,light:'none',target:'face'});
   const red=std('แดง'),w=S.widthM;
-  if(t==='front'){Object.assign(S,{light:'front',depthCm:8});if(S.face.mat)S.face=red;S.side=mat('silver')}
+  if(t==='front'){Object.assign(S,{light:'front',led:'white',depthCm:8,face:std('ขาว')});S.side=mat('silver')}
   if(t==='back')Object.assign(S,{light:'back',led:'warm',depthCm:5,face:mat('gold'),side:mat('gold')});
   if(t==='steel')Object.assign(S,{depthCm:3,face:mat('silver'),side:mat('silver')});
   if(t==='zinc'){S.depthCm=5;if(S.face.mat)S.face=red;S.side=S.face}
